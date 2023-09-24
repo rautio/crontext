@@ -1,4 +1,4 @@
-import { Greeter } from './index';
+import { parseCron } from './index';
 test('My Greeter', () => {
-  expect(Greeter('Carl')).toBe('Hello Carl');
+  expect(parseCron('Carl')).toBe('Hello Carl');
 });
