@@ -1,2 +1,17 @@
 At 04:00 on every day-of-month from 8 through 14.
 0 4 8-14 * *
+
+Hourly at 45 minutes past the hour
+45 * * * *
+
+At 9am every 10th and 15th of the month
+0 9 10,15 * *
+
+At every minute in April
+* * * 4 *
+
+At 9AM on the first day of every second month
+0 9 1 */2 *
+
+Twice a day at 9am and 9pm
+0 9,21 * * *
