@@ -8,7 +8,7 @@
     "test": "jest --config jest.config.js --watch",
     "test:ci": "jest --config jest.config.js",
     "test:smoke": "jest --config jest.config.js ./__tests__/smoke",
-    "build": "tsc",
+    "build": "rm -rf lib && tsc",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "prepare": "yarn build && husky install"
