@@ -1,0 +1,8 @@
+At 10am
+0 10 * * *
+
+On monday
+0 0 * * MON
+
+At 2:34pm
+23 14 * * *
