@@ -9,7 +9,7 @@
     "build": "tsc",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "prepare": "yarn build"
+    "prepare": "yarn build && husky install"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,12 @@
   "bugs": {
     "url": "https://github.com/rautio/crontext/issues"
   },
+  "lint-staged": {
+    "**/*.{js,ts,json}": [
+      "eslint . --fix",
+      "prettier --write ."
+    ]
+  },
   "homepage": "https://github.com/rautio/crontext#readme",
   "devDependencies": {
     "@types/jest": "^29.5.5",
@@ -38,7 +44,9 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.0",
     "jest": "^29.7.0",
+    "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
     "ts-jest": "^29.1.1",
     "typescript": "*"
