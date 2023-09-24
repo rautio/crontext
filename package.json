@@ -1,0 +1,26 @@
+{
+  "name": "crontext",
+  "version": "0.0.1",
+  "description": "Simple utility for parsing human text into a cron schedule.",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rautio/crontext.git"
+  },
+  "keywords": [
+    "cron",
+    "schedule",
+    "human",
+    "readable",
+    "text"
+  ],
+  "author": "Oskari Rautiainen (rautio)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rautio/crontext/issues"
+  },
+  "homepage": "https://github.com/rautio/crontext#readme"
+}
