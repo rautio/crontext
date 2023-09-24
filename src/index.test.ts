@@ -1,4 +1,4 @@
 import { parseCron } from './index';
-test('My Greeter', () => {
-  expect(parseCron('Carl')).toBe('Hello Carl');
+test('parseCron', () => {
+  expect(parseCron('Every weekday')).toBe('0 0 * * 1-5');
 });
