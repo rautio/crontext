@@ -1,7 +1,8 @@
 import TM from './tokens';
+import { TokenType } from './tokens';
 
-type Token = {
-  type: string;
+export type Token = {
+  type: TokenType;
   value: string;
 };
 
@@ -12,10 +13,9 @@ export const tokenize = (input: string): Token[] => {
   const raw = input.split(/\W+/);
   const tokens: Token[] = [];
   raw.forEach(r => {
-    const keys = Object.keys(TM);
+    const keys = Object.values(TokenType);
     for (let i = 0; i < keys.length; i += 1) {
       const k = keys[i];
-      // @ts-expect-error Not sure why
       const re = new RegExp(TM[k].test);
       if (re.test(r)) {
         tokens.push({ type: k, value: r });
