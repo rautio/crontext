@@ -7,7 +7,7 @@
   "scripts": {
     "test": "node ./scripts/jest-runner.js --config jest.config.js --watch",
     "test:ci": "node ./scripts/jest-runner.js --config jest.config.js",
-    "test:smoke": "node ./scripts/jest-runner.js --config jest.config.js --watch --suite=smoke __tests__/index.ts",
+    "test:smoke": "node ./scripts/jest-runner.js --config jest.config.js --suite=smoke __tests__/index.ts",
     "build": "rm -rf lib && tsc",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
