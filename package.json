@@ -5,9 +5,9 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest --config jest.config.js --watch",
-    "test:ci": "jest --config jest.config.js",
-    "test:smoke": "jest --config jest.config.js ./__tests__/smoke",
+    "test": "node ./scripts/jest-runner.js --config jest.config.js --watch",
+    "test:ci": "node ./scripts/jest-runner.js --config jest.config.js",
+    "test:smoke": "node ./scripts/jest-runner.js --config jest.config.js --watch --suite=smoke __tests__/index.ts",
     "build": "rm -rf lib && tsc",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
@@ -51,6 +51,8 @@
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
     "ts-jest": "^29.1.1",
-    "typescript": "*"
+    "typescript": "*",
+    "yargs": "^17.7.2",
+    "yargs-unparser": "^2.0.0"
   }
 }

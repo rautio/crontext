@@ -11,8 +11,11 @@ type Case = {
 /**
  * Run all test suites
  */
-
-const suites = readdirSync(path.join(__dirname, './suites'));
+const envSuite = process.env.TEST_SUITE;
+let suites = readdirSync(path.join(__dirname, './suites'));
+if (envSuite) {
+  suites = [envSuite + '.txt'];
+}
 suites.forEach(name => {
   describe('Crontext test suite: ' + name, () => {
     const content = readFileSync(
