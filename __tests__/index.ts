@@ -31,6 +31,7 @@ suites.forEach(name => {
           input = line;
         } else {
           cases.push({ input, output: line });
+          input = '';
         }
       }
     });
