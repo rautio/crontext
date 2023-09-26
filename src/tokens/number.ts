@@ -33,6 +33,13 @@ const tens = {
   ninety: 90,
 };
 
+// TODO: All combination of tens and digits
+// ([tT]wenty|[tT]hirty)( |-)([tT]hree|[tT]wo)
+
+export const numberStringRegexOptions = `${Object.keys(digits).join(
+  '|',
+)}|${Object.keys(ten).join('|')}|${Object.keys(tens).join('|')}`;
+
 const numberMap: Record<string, number> = { ...digits, ...ten, ...tens };
 
 /**

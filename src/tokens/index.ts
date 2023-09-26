@@ -1,3 +1,5 @@
+import { numberStringRegexOptions } from './number';
+
 export type TokenDef = {
   test: string;
 };
@@ -33,7 +35,7 @@ export const tokens = {
     test: '^(minutes|minute|mins|min)$',
   },
   [TokenType.NUMBER]: {
-    test: /^\d+$/,
+    test: `^(\\d+|${numberStringRegexOptions})$`,
   },
   [TokenType.FREQUENCY]: {
     test: '^(every|each|every other|Every|Each|Every other)$',

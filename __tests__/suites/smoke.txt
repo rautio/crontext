@@ -3,3 +3,12 @@ Every minute
 
 Every 2 minutes
 /2 * * * *
+
+Every five minutes
+/5 * * * *
+
+Every twelve minutes
+/12 * * * *
+
+Every thirty minutes
+/30 * * * *

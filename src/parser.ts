@@ -1,5 +1,6 @@
 import type { Token } from './tokenize';
 import { TokenType } from './tokens';
+import { getNumber } from './tokens/number';
 
 export type Parsed = {
   minutes: string;
@@ -23,7 +24,7 @@ export const rules = [
     match: [FREQUENCY, NUMBER, MINUTE],
     update: (crontext: Parsed, values: Token[]): Parsed => {
       // TODO get actual number
-      crontext.minutes = '/' + values[1].value;
+      crontext.minutes = '/' + getNumber(values[1].value);
       return crontext;
     },
   },
