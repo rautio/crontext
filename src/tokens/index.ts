@@ -38,7 +38,7 @@ export const tokens = {
     test: `^(\\d+|${numberStringRegexOptions})$`,
   },
   [TokenType.FREQUENCY]: {
-    test: '^(every|each|every other|Every|Each|Every other)$',
+    test: '^(every|each|every other)$',
   },
   [TokenType.EXCLUDE]: {
     test: '^(except|excluding)$',
