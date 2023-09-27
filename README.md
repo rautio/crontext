@@ -1,5 +1,7 @@
 # Crontext
 
+[![codecov](https://codecov.io/gh/rautio/crontext/graph/badge.svg?token=2D9ALEL4AD)](https://codecov.io/gh/rautio/crontext)
+
 Converts a human readable text to its cron schedule format.
 
 ## Roadmap
