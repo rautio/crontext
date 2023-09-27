@@ -6,8 +6,8 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "node ./scripts/jest-runner.js --config jest.config.js --watch",
-    "test:ci": "node ./scripts/jest-runner.js --config jest.config.js src",
-    "test:smoke": "node ./scripts/jest-runner.js --config jest.config.js --suite=smoke __tests__/index.ts",
+    "test:ci": "node ./scripts/jest-runner.js --config jest.config.js src __tests__ --suite=smoke",
+    "test:smoke": "node ./scripts/jest-runner.js --config jest.config.js --suite=smoke __tests__",
     "build": "rm -rf lib && tsc",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",

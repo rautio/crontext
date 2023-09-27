@@ -13,7 +13,7 @@ type Case = {
  */
 const envSuite = process.env.TEST_SUITE;
 let suites = readdirSync(path.join(__dirname, './suites'));
-if (envSuite) {
+if (envSuite && envSuite !== 'undefined') {
   suites = [envSuite + '.txt'];
 }
 suites.forEach(name => {
