@@ -9,6 +9,7 @@ export enum TokenType {
   NUMBER = 'number',
   EXCLUDE = 'exclude',
   FREQUENCY = 'frequency',
+  CLOCK = 'clock time',
   // Unknown has to be last
   UNKOWN = 'unknown',
 }
@@ -38,7 +39,10 @@ export const tokens = {
     test: `^(\\d+|${numberStringRegexOptions})$`,
   },
   [TokenType.FREQUENCY]: {
-    test: '^(every|each|every other)$',
+    test: '^(every|each|every other|at|on)$',
+  },
+  [TokenType.CLOCK]: {
+    test: /^(\d?\d:\d\d|\d)[ ]?(am|pm|AM|PM)|\d\d:\d\d|midnight|noon$/,
   },
   [TokenType.EXCLUDE]: {
     test: '^(except|excluding)$',

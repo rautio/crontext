@@ -15,3 +15,18 @@ Every fifty-nine minutes
 
 Every thirty Mins
 /30 * * * *
+
+At 2pm
+0 14 * * *
+
+at 20:15
+15 20 * * *
+
+At 9am
+0 9 * * *
+
+At midnight
+0 24 * * *
+
+At noon
+0 12 * * *

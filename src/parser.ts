@@ -1,15 +1,18 @@
 import type { Token } from './tokenize';
 import { TokenType } from './tokens';
 import { getNumber } from './tokens/number';
+import { getTime } from './tokens/clock';
 
 export type Parsed = {
   minutes: string;
+  hour: string;
 };
 
-const { FREQUENCY, NUMBER, MINUTE } = TokenType;
+const { FREQUENCY, NUMBER, MINUTE, CLOCK } = TokenType;
 
 const defaultParsed: Parsed = {
   minutes: '*',
+  hour: '*',
 };
 
 /**
@@ -22,9 +25,8 @@ const defaultParsed: Parsed = {
 export const rules = [
   {
     match: [FREQUENCY, NUMBER, MINUTE],
-    update: (crontext: Parsed, values: Token[]): Parsed => {
-      // TODO get actual number
-      crontext.minutes = '/' + getNumber(values[1].value);
+    update: (crontext: Parsed, tokens: Token[]): Parsed => {
+      crontext.minutes = '/' + getNumber(tokens[1].value);
       return crontext;
     },
   },
@@ -32,6 +34,15 @@ export const rules = [
     match: [FREQUENCY, MINUTE],
     update: (crontext: Parsed): Parsed => {
       crontext.minutes = '*'; // default
+      return crontext;
+    },
+  },
+  {
+    match: [FREQUENCY, CLOCK],
+    update: (crontext: Parsed, tokens: Token[]): Parsed => {
+      const [hour, minute] = getTime(tokens[1].value);
+      crontext.minutes = minute.toString();
+      crontext.hour = hour.toString();
       return crontext;
     },
   },
