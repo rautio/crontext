@@ -33,3 +33,6 @@ At noon
 
 At every minute on monday
 * * * * 1
+
+On Friday
+0 9 * * 5

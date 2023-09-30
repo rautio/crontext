@@ -12,14 +12,19 @@ export type Parsed = {
   month: string;
 };
 
+export const DEFAULT = '*';
+export const INIT = '_'; // Used to know whether the value has been set at all.
+export const DEFAULT_DAY_MINUTES = '0';
+export const DEFAULT_DAY_HOURS = '9';
+
 const { FREQUENCY, NUMBER, MINUTE, CLOCK, DAY } = TokenType;
 
 const defaultParsed: Parsed = {
-  minutes: '*',
-  hour: '*',
-  dayOfMonth: '*',
-  dayOfWeek: '*',
-  month: '*',
+  minutes: INIT,
+  hour: INIT,
+  dayOfMonth: INIT,
+  dayOfWeek: INIT,
+  month: INIT,
 };
 
 /**
@@ -40,15 +45,18 @@ export const rules = [
   {
     match: [FREQUENCY, MINUTE],
     update: (crontext: Parsed): Parsed => {
-      crontext.minutes = '*'; // default
+      crontext.minutes = DEFAULT;
+      crontext.hour = DEFAULT;
       return crontext;
     },
   },
   {
     match: [FREQUENCY, DAY],
     update: (crontext: Parsed, tokens: Token[]): Parsed => {
-      crontext.dayOfWeek = '*'; // default
-      crontext.dayOfMonth = '*'; // default
+      // If there are no minutes or hour set we use defaults
+      // 'On monday' -> 9am Monday
+      if (crontext.minutes === INIT) crontext.minutes = DEFAULT_DAY_MINUTES;
+      if (crontext.hour === INIT) crontext.hour = DEFAULT_DAY_HOURS;
       const dayOfWeek = getDayOfWeek(tokens[1].value);
       return { ...crontext, dayOfWeek };
     },

@@ -1,4 +1,4 @@
-import { Parsed } from './parser';
+import { Parsed, INIT, DEFAULT } from './parser';
 
 /**
  * CRON FORMAT:
@@ -14,6 +14,13 @@ import { Parsed } from './parser';
  * * * * * *
  */
 
+const getValue = (str: string): string => {
+  if (str === INIT) return DEFAULT;
+  return str;
+};
+
 export const generate = (parsed: Parsed): string => {
-  return `${parsed.minutes} ${parsed.hour} ${parsed.dayOfMonth} ${parsed.month} ${parsed.dayOfWeek}`;
+  return `${getValue(parsed.minutes)} ${getValue(parsed.hour)} ${getValue(
+    parsed.dayOfMonth,
+  )} ${getValue(parsed.month)} ${getValue(parsed.dayOfWeek)}`;
 };
