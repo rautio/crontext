@@ -6,6 +6,9 @@ import { getTime } from './tokens/clock';
 export type Parsed = {
   minutes: string;
   hour: string;
+  dayOfMonth: string;
+  dayOfWeek: string;
+  month: string;
 };
 
 const { FREQUENCY, NUMBER, MINUTE, CLOCK } = TokenType;
@@ -13,6 +16,9 @@ const { FREQUENCY, NUMBER, MINUTE, CLOCK } = TokenType;
 const defaultParsed: Parsed = {
   minutes: '*',
   hour: '*',
+  dayOfMonth: '*',
+  dayOfWeek: '*',
+  month: '*',
 };
 
 /**

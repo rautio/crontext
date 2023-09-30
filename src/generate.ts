@@ -15,5 +15,5 @@ import { Parsed } from './parser';
  */
 
 export const generate = (parsed: Parsed): string => {
-  return `${parsed.minutes} ${parsed.hour} * * *`;
+  return `${parsed.minutes} ${parsed.hour} ${parsed.dayOfMonth} ${parsed.month} ${parsed.dayOfWeek}`;
 };
