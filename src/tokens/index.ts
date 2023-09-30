@@ -1,4 +1,5 @@
 import { numberStringRegexOptions } from './number';
+import { dayRegexOptions } from './day';
 
 export type TokenDef = {
   test: string;
@@ -9,6 +10,7 @@ export enum TokenType {
   NUMBER = 'number',
   EXCLUDE = 'exclude',
   FREQUENCY = 'frequency',
+  DAY = 'day',
   CLOCK = 'clock time',
   // Unknown has to be last
   UNKOWN = 'unknown',
@@ -43,6 +45,9 @@ export const tokens = {
   },
   [TokenType.CLOCK]: {
     test: /^(\d?\d:\d\d|\d)[ ]?(am|pm|AM|PM)|\d\d:\d\d|midnight|noon$/,
+  },
+  [TokenType.DAY]: {
+    test: `^${dayRegexOptions}$`,
   },
   [TokenType.EXCLUDE]: {
     test: '^(except|excluding)$',

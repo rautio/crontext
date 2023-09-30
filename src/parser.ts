@@ -2,6 +2,7 @@ import type { Token } from './tokenize';
 import { TokenType } from './tokens';
 import { getNumber } from './tokens/number';
 import { getTime } from './tokens/clock';
+import { getDayOfWeek } from './tokens/day';
 
 export type Parsed = {
   minutes: string;
@@ -11,7 +12,7 @@ export type Parsed = {
   month: string;
 };
 
-const { FREQUENCY, NUMBER, MINUTE, CLOCK } = TokenType;
+const { FREQUENCY, NUMBER, MINUTE, CLOCK, DAY } = TokenType;
 
 const defaultParsed: Parsed = {
   minutes: '*',
@@ -41,6 +42,15 @@ export const rules = [
     update: (crontext: Parsed): Parsed => {
       crontext.minutes = '*'; // default
       return crontext;
+    },
+  },
+  {
+    match: [FREQUENCY, DAY],
+    update: (crontext: Parsed, tokens: Token[]): Parsed => {
+      crontext.dayOfWeek = '*'; // default
+      crontext.dayOfMonth = '*'; // default
+      const dayOfWeek = getDayOfWeek(tokens[1].value);
+      return { ...crontext, dayOfWeek };
     },
   },
   {

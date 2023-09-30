@@ -30,3 +30,6 @@ At midnight
 
 At noon
 0 12 * * *
+
+At every minute on monday
+* * * * 1

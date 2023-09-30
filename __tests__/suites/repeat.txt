@@ -36,3 +36,6 @@ Every weekend at 9am
 
 Every Saturday
 0 0 * * SAT
+
+Every Monday, Tuesday and Thursday at noon
+0 12 * * 1,2,4
