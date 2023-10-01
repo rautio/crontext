@@ -1,8 +1,29 @@
-At 10am
-0 10 * * *
+In 20 minutes
+* * * * * 
 
-On monday
-0 0 * * MON
+Tomorrow
+* * * * * 
 
-At 2:34pm
-23 14 * * *
+Today at 8pm
+* * * * * 
+
+Yesterday
+* * * * * 
+
+Next week
+* * * * *
+
+In 13 days
+* * * * *
+
+In five weeks
+* * * * *
+
+In 3 months
+* * * * *
+
+Next year
+* * * * *
+
+In 90 minutes
+* * * * *
