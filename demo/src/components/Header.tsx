@@ -15,7 +15,7 @@ export const Header = () => {
         </Link>
       </div>
       <Link href="https://github.com/rautio/crontext">
-        <div className="flex leading-[60px] hover:text-sky-500">
+        <div className="flex leading-[60px] hover:text-indigo-500">
           <span>Github</span>
           <span className="m-auto pl-2">
             <ExternalLink />
