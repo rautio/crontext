@@ -7,9 +7,6 @@ export type Token = {
 };
 
 export const tokenize = (input: string): Token[] => {
-  if (!input) {
-    throw new Error('Input string required.');
-  }
   const raw = input.split(/\s/); // Split by whitespace
   const tokens: Token[] = [];
   raw.forEach(r => {
