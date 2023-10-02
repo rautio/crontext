@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "uplink": "cd .. && yarn build && cd ./lib && yarn link && cd ../demo && yarn link crontext",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
