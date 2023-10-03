@@ -17,6 +17,3 @@ export const Editor = () => {
 };
 
 export default Editor;
-
-// w-full border p-4 bg-gray-700 border-gray-600 placeholder-gray-400 text-white rounded-lg focus:border-sky-500 focus:ring-sky-500
-// block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
