@@ -8,6 +8,7 @@ import Copy from '@/icons/Copy';
 export const Editor = () => {
   const [text, setText] = useState('Every minute');
   const [isCopied, setIsCopied] = useState(false);
+  const cron = parseCron(text);
   useEffect(() => {
     if (isCopied) {
       setTimeout(() => setIsCopied(false), 2000);
@@ -23,13 +24,13 @@ export const Editor = () => {
       <div className="flex pt-12 m-auto">
         <Input
           readOnly
-          value={parseCron(text)}
+          value={cron}
           className="text-2xl tracking-[0.75rem] w-30 text-center"
         />
         <Button
           onClick={() => {
+            navigator.clipboard.writeText(cron);
             setIsCopied(true);
-            navigator.clipboard.writeText(text);
           }}
         >
           {isCopied ? (
