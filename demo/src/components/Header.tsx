@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import ExternalLink from '@/icons/ExternalLink';
 import Link from 'next/link';
+import Github from '@/icons/Github';
 
 export const Header = () => {
   return (
@@ -18,7 +19,7 @@ export const Header = () => {
         <div className="flex leading-[60px] hover:text-sky-500">
           <span>Github</span>
           <span className="m-auto pl-2">
-            <ExternalLink />
+            <Github />
           </span>
         </div>
       </Link>
