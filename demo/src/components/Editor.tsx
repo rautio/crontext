@@ -15,7 +15,7 @@ export const Editor = () => {
     }
   }, [isCopied]);
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col max-w-3xl md:w-3/5 sm:w-11/12 mt-[30%]">
       <Input
         value={text}
         onChange={e => setText(e.target.value)}
