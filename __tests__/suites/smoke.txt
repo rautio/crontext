@@ -39,3 +39,6 @@ On Friday
 
 On Wednesday at 2:13pm
 13 14 * * 3
+
+Every week
+0 9 * * 1

@@ -4,8 +4,18 @@
 
 Parses natural text to a cron schedule format.
 
+Try it out live here: [https://www.crontext.io](https://www.crontext.io/)
+
+```
+npm install crontext
+```
+
+## Usage
+
 ```js
-parseCron('Every weekday at 9am');
+import crontext from 'crontext';
+
+crontext('Every weekday');
 // 0 9 * * 1-5
 ```
 

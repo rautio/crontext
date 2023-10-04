@@ -20,6 +20,7 @@ describe('Day token getDayOfWeek() should', () => {
   test('return the correct days for special terms', () => {
     expect(getDayOfWeek('weekend')).toEqual('0,6');
     expect(getDayOfWeek('weekday')).toEqual('1-5');
+    expect(getDayOfWeek('week')).toEqual('1');
   });
   test('handle unknown terms', () => {
     expect(() => getDayOfWeek('rick')).toThrow();
