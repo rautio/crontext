@@ -1,12 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import ExternalLink from '@/icons/ExternalLink';
 import Link from 'next/link';
 import Github from '@/icons/Github';
 
 export const Header = () => {
   return (
-    <header className="flex pl-12 px-8 h-[60px] max-w-7xl m-auto">
+    <header className="flex pl-12 px-8 h-[60px] max-w-6xl m-auto">
       <div className="flex flex-grow">
         <Link className="flex" href="/">
           <Image alt="Crontext" src="/images/logo.svg" width={32} height={32} />

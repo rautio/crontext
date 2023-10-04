@@ -4,6 +4,8 @@ import parseCron from 'crontext';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Copy from '@/icons/Copy';
+import Explain from '@/icons/Explain';
+import { Separator } from './ui/separator';
 
 export const Editor = () => {
   const [text, setText] = useState('Every minute');
@@ -15,13 +17,14 @@ export const Editor = () => {
     }
   }, [isCopied]);
   return (
-    <div className="w-full flex flex-col max-w-3xl md:w-3/5 sm:w-11/12 mt-[30%]">
+    <div className="w-full flex flex-col max-w-3xl md:w-3/5 sm:w-11/12">
+      <span className="text-sm text-neutral-400">Type a schedule.</span>
       <Input
         value={text}
         onChange={e => setText(e.target.value)}
         className="text-xl p-8 dark:bg-neutral-900 bg-white border-sky-500"
       />
-      <div className="flex pt-12 m-auto">
+      <div className="flex pt-8 m-auto">
         <Input
           readOnly
           value={cron}
