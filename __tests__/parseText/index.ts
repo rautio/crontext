@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync } from 'fs';
-import { parseCron } from '../src/index';
+import { parseCron } from '../../src/index';
 
 const path = require('path');
 
