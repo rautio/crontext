@@ -1,16 +1,15 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import parseCron from 'crontext';
+import { parseText, nextDate } from 'crontext';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Copy from '@/icons/Copy';
-import Explain from '@/icons/Explain';
-import { Separator } from './ui/separator';
 
 export const Editor = () => {
   const [text, setText] = useState('Every minute');
   const [isCopied, setIsCopied] = useState(false);
-  const cron = parseCron(text);
+  const cron = parseText(text);
+  const date = nextDate(cron, new Date());
   useEffect(() => {
     if (isCopied) {
       setTimeout(() => setIsCopied(false), 2000);
@@ -45,6 +44,10 @@ export const Editor = () => {
             </span>
           )}
         </Button>
+      </div>
+      <div className="text-sm text-neutral-400 text-center mt-4">
+        Next Occurence:{' '}
+        <span className="text-neutral-50">{date.toLocaleString()}</span>
       </div>
     </div>
   );
