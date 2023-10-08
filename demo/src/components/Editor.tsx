@@ -46,8 +46,17 @@ export const Editor = () => {
         </Button>
       </div>
       <div className="text-sm text-neutral-400 text-center mt-4">
-        Next Occurence:{' '}
-        <span className="text-neutral-50">{date.toLocaleString()}</span>
+        Next Occurrence:{' '}
+        <span className="text-neutral-50">
+          {date.toLocaleDateString('en-us', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+          })}
+        </span>
       </div>
     </div>
   );
