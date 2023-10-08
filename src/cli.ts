@@ -1,4 +1,4 @@
-import { parseCron } from './index';
+import { parseText } from './index';
 
 const runCLI = () => {
   const args = process.argv;
@@ -7,7 +7,7 @@ const runCLI = () => {
   }
   const input = args[2];
   console.log('Input: \n', input);
-  const res = parseCron(input);
+  const res = parseText(input);
   console.log('Cron: \n', res);
 };
 

@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync } from 'fs';
-import { nextDate } from '../../src/next';
+import { nextDate } from '../../src/index';
 
 const path = require('path');
 

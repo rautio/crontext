@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync } from 'fs';
-import { parseCron } from '../../src/index';
+import { parseText } from '../../src/index';
 
 const path = require('path');
 
@@ -37,7 +37,7 @@ suites.forEach(name => {
     });
     cases.forEach(({ input, output }) => {
       test(input, () => {
-        expect(parseCron(input)).toEqual(output);
+        expect(parseText(input)).toEqual(output);
       });
     });
   });
