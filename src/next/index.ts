@@ -14,6 +14,16 @@ export const getNums = (str: string, units: number): Array<number> => {
     splits.forEach(split => {
       res = [...res, ...getNums(split, units)];
     });
+  } else if (str.indexOf('/') > -1) {
+    const splits = str.split('/');
+    if (splits.length === 2) {
+      const stepNum = Number(splits[1]);
+      if (splits[0] === '*' && !isNaN(stepNum)) {
+        for (let i = 0; i < units; i += stepNum) {
+          res.push(i);
+        }
+      }
+    }
   } else if (str.indexOf('-') > -1) {
     // There's a range - but we've already split so this should be just two numbers
     const splits = str.split('-');
@@ -156,6 +166,12 @@ export const iterMinute = (cur: Date, schedule: number[]): Date => {
 };
 
 /**
+ * Whether the given value should be reset to 0. Usually happens if the string contains '*'. Even '* / 15'
+ * @param str
+ */
+export const shouldReset = (str: string): boolean => str.indexOf('*') > -1;
+
+/**
  * Iterate to the next date on the cron schedule. Does not support seconds format.
  * @param date
  * @param cron
@@ -181,7 +197,7 @@ export const iterDate = (date: Date, cron: string): Date => {
   // Validate hour
   const curHours = cur.getHours();
   cur = iterHour(cur, hourSchedule);
-  if (curHours != cur.getHours() && minute === '*') {
+  if (curHours != cur.getHours() && shouldReset(minute)) {
     cur.setMinutes(0);
   }
   if (curHours > cur.getHours()) {
@@ -193,9 +209,9 @@ export const iterDate = (date: Date, cron: string): Date => {
   cur = iterDayOfMonth(cur, dayMonthSchedule);
   // Validate day of week
   cur = iterDayOfWeek(cur, getNums(dayWeek, 7));
-  if (cur.getDate() !== curDate && hour === '*') {
+  if (cur.getDate() !== curDate && shouldReset(hour)) {
     cur.setHours(0);
-    if (minute === '*') {
+    if (shouldReset(minute)) {
       cur.setMinutes(0);
     }
   }
@@ -203,11 +219,11 @@ export const iterDate = (date: Date, cron: string): Date => {
   const curMonth = cur.getMonth();
   cur = iterMonth(cur, getNums(month, 12));
   if (cur.getMonth() !== curMonth) {
-    if (dayMonth === '*' && dayWeek === '*') {
+    if (shouldReset(dayMonth) && shouldReset(dayWeek)) {
       cur.setDate(1);
-      if (hour === '*') {
+      if (shouldReset(hour)) {
         cur.setHours(0);
-        if (minute === '*') {
+        if (shouldReset(minute)) {
           cur.setMinutes(0);
         }
       }

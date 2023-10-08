@@ -61,6 +61,11 @@ describe('getNums() should', () => {
       0, 1, 2, 3, 4, 5, 6, 7, 8, 22, 23,
     ]);
   });
+  test('Handle / syntax', () => {
+    expect(getNums('*/15', 60)).toEqual([0, 15, 30, 45]);
+    expect(getNums('*/2', 12)).toEqual([0, 2, 4, 6, 8, 10]);
+    expect(getNums('*/6', 24)).toEqual([0, 6, 12, 18]);
+  });
 });
 
 describe('iterMonth() should', () => {
