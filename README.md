@@ -15,10 +15,12 @@ npm install crontext
 ## Usage
 
 ```js
-import crontext from 'crontext';
+import { parseText, nextDate } from 'crontext';
 
-crontext('Every weekday');
+const cron = parseText('Every weekday');
 // 0 9 * * 1-5
+
+const nextOccurence = nextDate(cron, new Date());
 ```
 
 Interested in Contributing? Check out the [Contribution](./CONTRIBUTING.md) guide.
