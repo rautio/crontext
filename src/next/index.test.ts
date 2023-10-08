@@ -12,6 +12,10 @@ import {
 } from '.';
 
 describe('nextDate() should', () => {
+  test('return the start date on wrong cron format', () => {
+    const start = new Date('July 31 10:05 1993');
+    expect(nextDate('foo', start).toString()).toEqual(start.toString());
+  });
   test('return the correct next month', () => {
     const n = nextDate('* * * 10-11 *', new Date('October 4 09:00:00 2023'));
     expect(n.toString()).toEqual(

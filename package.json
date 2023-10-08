@@ -10,6 +10,7 @@
   "scripts": {
     "test": "node ./scripts/jest-runner.js --config jest.config.js --watch",
     "test:ci": "node ./scripts/jest-runner.js --config jest.config.js src __tests__ --suite=smoke",
+    "coverage": "yarn test:ci -- --coverage",
     "test:smoke": "node ./scripts/jest-runner.js --config jest.config.js --suite=smoke __tests__",
     "build": "rm -rf lib && tsc",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts",
