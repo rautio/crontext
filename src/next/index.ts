@@ -36,6 +36,8 @@ export const getNums = (str: string, units: number): Array<number> => {
       }
     }
   }
+  // If the range is the full range its the same as '*' and should return empty array
+  if (res.length === units) return [];
   // '*' returns empty array.
   return res.sort((a, b) => a - b);
 };
@@ -183,7 +185,7 @@ export const iterDate = (date: Date, cron: string): Date => {
   const splits = cron.split(' ');
   const [minute, hour, dayMonth, month, dayWeek] = splits;
   // Validate largest items first (smaller ones will spill over and re-run checks)
-  const monthSchedule = getNums(month, 11);
+  const monthSchedule = getNums(month, 12);
   const dayWeekSchedule = getNums(dayWeek, 7);
   const dayMonthSchedule = getNums(dayMonth, 31); // How do we know? Depends on the month.
   const hourSchedule = getNums(hour, 24);
@@ -208,7 +210,8 @@ export const iterDate = (date: Date, cron: string): Date => {
   const curDate = cur.getDate();
   cur = iterDayOfMonth(cur, dayMonthSchedule);
   // Validate day of week
-  cur = iterDayOfWeek(cur, getNums(dayWeek, 7));
+  cur = iterDayOfWeek(cur, dayWeekSchedule);
+  // Reset hour and minute if needed
   if (cur.getDate() !== curDate && shouldReset(hour)) {
     cur.setHours(0);
     if (shouldReset(minute)) {
@@ -217,9 +220,9 @@ export const iterDate = (date: Date, cron: string): Date => {
   }
   // Validate month
   const curMonth = cur.getMonth();
-  cur = iterMonth(cur, getNums(month, 12));
+  cur = iterMonth(cur, monthSchedule);
   if (cur.getMonth() !== curMonth) {
-    if (shouldReset(dayMonth) && shouldReset(dayWeek)) {
+    if (shouldReset(dayMonth) || shouldReset(dayWeek)) {
       cur.setDate(1);
       if (shouldReset(hour)) {
         cur.setHours(0);

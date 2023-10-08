@@ -35,11 +35,31 @@ describe('nextDate() should', () => {
       nextDate('25 8 31 9 *', new Date('March 28 11:00:00 2023')).toString(),
     ).toEqual(new Date('October 31 8:25:00 2023').toString());
   });
+  test('return complex datetime', () => {
+    expect(
+      nextDate(
+        '*/27 */2 * 6-8 1-5',
+        new Date('March 28 11:00:00 2023'),
+      ).toString(),
+    ).toEqual(new Date('July 3 0:00:00 2023').toString());
+  });
+  test('return same date on full range as *', () => {
+    const start = new Date('March 28 11:00:00 2023');
+    expect(nextDate('27 2 * 0-11 0-6', start).toString()).toEqual(
+      nextDate('27 2 0-31 * *', start).toString(),
+    );
+  });
 });
 
 describe('getNums() should', () => {
   test('Return empty array on *', () => {
     expect(getNums('*', 60)).toEqual([]);
+  });
+  test('Return empty array on full range', () => {
+    expect(getNums('0-6', 7)).toEqual([]);
+    expect(getNums('0-59', 60)).toEqual([]);
+    expect(getNums('0-23', 24)).toEqual([]);
+    expect(getNums('0-11', 12)).toEqual([]);
   });
   test('Return a single number', () => {
     expect(getNums('2', 24)).toEqual([2]);
