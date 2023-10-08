@@ -39,7 +39,15 @@ suites.forEach(name => {
     });
     cases.forEach(({ start, cron, output }) => {
       test(`start: ${start}, cron: ${cron}`, () => {
-        expect(nextDate(cron, new Date(start))).toEqual(new Date(output));
+        expect(
+          nextDate(cron, new Date(start)).toLocaleString('en-US', {
+            timeZone: 'America/Los_Angeles',
+          }),
+        ).toEqual(
+          new Date(output).toLocaleString('en-US', {
+            timeZone: 'America/Los_Angeles',
+          }),
+        );
       });
     });
   });

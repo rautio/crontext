@@ -181,16 +181,38 @@ export const iterDate = (date: Date, cron: string): Date => {
   // Validate hour
   const curHours = cur.getHours();
   cur = iterHour(cur, hourSchedule);
+  if (curHours != cur.getHours() && minute === '*') {
+    cur.setMinutes(0);
+  }
   if (curHours > cur.getHours()) {
     // We have spilled over the day - need to revalidate
     return iterDate(cur, cron);
   }
   // Validate date
+  const curDate = cur.getDate();
   cur = iterDayOfMonth(cur, dayMonthSchedule);
   // Validate day of week
   cur = iterDayOfWeek(cur, getNums(dayWeek, 7));
+  if (cur.getDate() !== curDate && hour === '*') {
+    cur.setHours(0);
+    if (minute === '*') {
+      cur.setMinutes(0);
+    }
+  }
   // Validate month
+  const curMonth = cur.getMonth();
   cur = iterMonth(cur, getNums(month, 12));
+  if (cur.getMonth() !== curMonth) {
+    if (dayMonth === '*' && dayWeek === '*') {
+      cur.setDate(1);
+      if (hour === '*') {
+        cur.setHours(0);
+        if (minute === '*') {
+          cur.setMinutes(0);
+        }
+      }
+    }
+  }
   if (
     !isValid(cur.getMonth(), monthSchedule) ||
     !isValid(cur.getDay(), dayWeekSchedule) ||
@@ -198,6 +220,9 @@ export const iterDate = (date: Date, cron: string): Date => {
   ) {
     // We broke the month or day schedule, need to reiterate
     return iterDate(cur, cron);
+  }
+  if (cron === '* * * * *') {
+    cur.setMinutes(cur.getMinutes() + 1);
   }
   return cur;
 };

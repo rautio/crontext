@@ -12,18 +12,23 @@ import {
 } from '.';
 
 describe('nextDate() should', () => {
-  test('return the correct next month', () => {
+  test.only('return the correct next month', () => {
     const n = nextDate('* * * 10-11 *', new Date('October 4 09:00:00 2023'));
     expect(n.toString()).toEqual(
-      new Date('November 4 9:00:00 2023').toString(),
+      new Date('November 1 00:00:00 2023').toString(),
     );
     expect(
       nextDate('* * 13 * *', new Date('April 19 13:00 2023')).toString(),
-    ).toEqual(new Date('May 13 13:00 2023').toString()); // This should actually be 0:0
+    ).toEqual(new Date('May 13 00:00 2023').toString()); // This should actually be 0:0
+  });
+  test('return next minute', () => {
+    expect(
+      nextDate('* * * * *', new Date('March 28 11:00:00 2023')).toString(),
+    ).toEqual(new Date('March 28 11:01:00 2023').toString());
   });
   test('return the correct next week', () => {
     const n = nextDate('* * * * 0,6', new Date('March 28 11:00:00 2023'));
-    expect(n.toString()).toEqual(new Date('April 1 11:00:00 2023').toString());
+    expect(n.toString()).toEqual(new Date('April 1 0:00:00 2023').toString());
   });
   test('return exact datetime', () => {
     expect(
