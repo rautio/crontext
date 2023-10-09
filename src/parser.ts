@@ -3,6 +3,7 @@ import { TokenType } from './tokens';
 import { getNumber } from './tokens/number';
 import { getTime } from './tokens/clock';
 import { getDayOfWeek } from './tokens/day';
+import type { Options } from './options';
 
 export type Parsed = {
   minutes: string;
@@ -52,11 +53,11 @@ export const rules = [
   },
   {
     match: [FREQUENCY, DAY],
-    update: (crontext: Parsed, tokens: Token[]): Parsed => {
+    update: (crontext: Parsed, tokens: Token[], options: Options): Parsed => {
       // If there are no minutes or hour set we use defaults
       // 'On monday' -> 9am Monday
-      if (crontext.minutes === INIT) crontext.minutes = DEFAULT_DAY_MINUTES;
-      if (crontext.hour === INIT) crontext.hour = DEFAULT_DAY_HOURS;
+      if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
+      if (crontext.hour === INIT) crontext.hour = options.defaultHour;
       const dayOfWeek = getDayOfWeek(tokens[1].value);
       return { ...crontext, dayOfWeek };
     },
@@ -72,7 +73,7 @@ export const rules = [
   },
 ];
 
-export const parser = (tokens: Token[]): Parsed => {
+export const parser = (tokens: Token[], options: Options): Parsed => {
   let crontext = { ...defaultParsed };
   // Iterate all tokens
   for (let t = 0; t < tokens.length; t++) {
@@ -90,7 +91,7 @@ export const parser = (tokens: Token[]): Parsed => {
         }
         if (isMatch) {
           t = t + sub.length - 1;
-          crontext = rule.update(crontext, sub);
+          crontext = rule.update(crontext, sub, options);
         }
       }
     }
