@@ -47,6 +47,4 @@ All configurations are optional. The default start of day is 9am. A 'weekday' is
 | defaultHour   | What hour should each day start on. This is the default used when using non specific times like `'Every Monday'`   | `'9'`   |
 | defaultMinute | What minute should each day start on. This is the default used when using non specific times like `'Every Monday'` | `'0'`   |
 
-|
-
 Interested in Contributing? Check out the [Contribution](./CONTRIBUTING.md) guide.
