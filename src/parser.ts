@@ -39,7 +39,7 @@ export const rules = [
   {
     match: [FREQUENCY, NUMBER, MINUTE],
     update: (crontext: Parsed, tokens: Token[]): Parsed => {
-      crontext.minutes = '/' + getNumber(tokens[1].value);
+      crontext.minutes = '*/' + getNumber(tokens[1].value);
       return crontext;
     },
   },

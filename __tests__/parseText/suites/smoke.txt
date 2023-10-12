@@ -2,19 +2,19 @@ Every minute
 * * * * *
 
 Every 2 Minutes
-/2 * * * *
+*/2 * * * *
 
 Every Five minutes
-/5 * * * *
+*/5 * * * *
 
 every twelve Minute
-/12 * * * *
+*/12 * * * *
 
 Every fifty-nine minutes
-/59 * * * *
+*/59 * * * *
 
 Every thirty Mins
-/30 * * * *
+*/30 * * * *
 
 At 2pm
 0 14 * * *
