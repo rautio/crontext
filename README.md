@@ -41,10 +41,12 @@ parseText('Every weekday', { preset: 'system' });
 
 All configurations are optional. The default start of day is 9am. A 'weekday' is considered Monday-Friday and 'weekend' is Saturday or Sunday.
 
-| Option        | Description                                                                                                        | Default |
-| ------------- | ------------------------------------------------------------------------------------------------------------------ | ------- |
-| preset        | `'system'` as a preset will use 00:00 as the start of the day.                                                     | n/a     |
-| defaultHour   | What hour should each day start on. This is the default used when using non specific times like `'Every Monday'`   | `'9'`   |
-| defaultMinute | What minute should each day start on. This is the default used when using non specific times like `'Every Monday'` | `'0'`   |
+| Option          | Description                                                                                                        | Default                      |
+| --------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------- |
+| `preset`        | `'system'` as a preset will use 00:00 as the start of the day.                                                     | n/a                          |
+| `defaultHour`   | What hour should each day start on. This is the default used when using non specific times like `'Every Monday'`   | `'9'`                        |
+| `defaultMinute` | What minute should each day start on. This is the default used when using non specific times like `'Every Monday'` | `'0'`                        |
+| `startDate`     | What starting date to use for relative schedules like `"tomorrow"`, `"next month"`, etc.                           | Right now - aka `new Date()` |
+| `startOfWeek`   | Which day starts the week. Used for relative schedules like `"next week"`                                          | `'1'`                        |
 
 Interested in Contributing? Check out the [Contribution](./CONTRIBUTING.md) guide.
