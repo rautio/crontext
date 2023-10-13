@@ -1,6 +1,6 @@
 {
   "name": "crontext",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Simple utility for parsing human text into a cron schedule.",
   "files": [
     "lib"

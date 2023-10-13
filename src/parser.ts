@@ -18,7 +18,17 @@ export const INIT = '_'; // Used to know whether the value has been set at all.
 export const DEFAULT_DAY_MINUTES = '0';
 export const DEFAULT_DAY_HOURS = '9';
 
-const { FREQUENCY, NUMBER, MINUTE, CLOCK, DAY, HOUR } = TokenType;
+const {
+  FREQUENCY,
+  OCCURENCE,
+  NUMBER,
+  MINUTE,
+  CLOCK,
+  DAY,
+  HOUR,
+  DAYS,
+  RELATIVE_DAY,
+} = TokenType;
 
 const defaultParsed: Parsed = {
   minutes: INIT,
@@ -76,6 +86,33 @@ export const rules = [
       if (crontext.hour === INIT) crontext.hour = options.defaultHour;
       const dayOfWeek = getDayOfWeek(tokens[1].value);
       return { ...crontext, dayOfWeek };
+    },
+  },
+  {
+    match: [RELATIVE_DAY],
+    update: (crontext: Parsed, tokens: Token[], options: Options): Parsed => {
+      if (tokens[0].value === 'tomorrow') {
+        const { startDate } = options;
+        const tomorrow = new Date(startDate.getTime());
+        tomorrow.setDate(startDate.getDate() + 1);
+        crontext.dayOfMonth = tomorrow.getDate().toString();
+        if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
+        if (crontext.hour === INIT) crontext.hour = options.defaultHour;
+      }
+      return crontext;
+    },
+  },
+  {
+    match: [OCCURENCE, NUMBER, DAYS],
+    update: (crontext: Parsed, tokens: Token[], options: Options): Parsed => {
+      const delta = getNumber(tokens[1].value);
+      const { startDate } = options;
+      const nextDate = new Date(startDate.getTime());
+      nextDate.setDate(nextDate.getDate() + delta);
+      crontext.dayOfMonth = nextDate.getDate().toString();
+      if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
+      if (crontext.hour === INIT) crontext.hour = options.defaultHour;
+      return crontext;
     },
   },
   {

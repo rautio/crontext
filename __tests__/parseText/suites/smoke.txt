@@ -54,3 +54,12 @@ Every hour
 
 Every 12 hrs
 0 */12 * * *
+
+Tomorrow
+0 9 2 * *
+
+In 3 days
+0 9 4 * *
+
+In twenty days
+0 9 21 * *

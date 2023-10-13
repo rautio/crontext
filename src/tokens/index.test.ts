@@ -54,3 +54,30 @@ describe('Hour token should', () => {
     expect(re.test('hers')).toBe(false);
   });
 });
+
+describe('Days token should', () => {
+  const re = new RegExp(tokens[TokenType.DAYS].test);
+  test('match on different formats', () => {
+    expect(re.test('days')).toBe(true);
+    expect(re.test('day')).toBe(true);
+  });
+  test('not match in incorrect format', () => {
+    expect(re.test('d')).toBe(false);
+    expect(re.test('da')).toBe(false);
+    expect(re.test('dayes')).toBe(false);
+    expect(re.test('date')).toBe(false);
+  });
+});
+
+describe('Relative Day token should', () => {
+  const re = new RegExp(tokens[TokenType.RELATIVE_DAY].test);
+  test('match on different formats', () => {
+    expect(re.test('tomorrow')).toBe(true);
+  });
+  test('not match in incorrect format', () => {
+    expect(re.test('yesterday')).toBe(false);
+    expect(re.test('tmrw')).toBe(false);
+    expect(re.test('friday')).toBe(false);
+    expect(re.test('mon')).toBe(false);
+  });
+});

@@ -1,6 +1,8 @@
 import { readFileSync, readdirSync } from 'fs';
 import { parseText } from '../../src/index';
 
+const currentDate = new Date('2023-1-1');
+
 const path = require('path');
 
 type Case = {
@@ -18,6 +20,12 @@ if (envSuite && envSuite !== 'undefined') {
 }
 suites.forEach(name => {
   describe('Crontext test suite: ' + name, () => {
+    beforeAll(() => {
+      jest.useFakeTimers().setSystemTime(currentDate);
+    });
+    afterAll(() => {
+      jest.useRealTimers();
+    });
     const content = readFileSync(
       path.join(__dirname, './suites', name),
       'utf-8',
