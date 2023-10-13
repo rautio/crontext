@@ -1,11 +1,18 @@
 import { parseOptions } from './index';
 
+const currentDate = new Date('2023-10-13');
 describe('parseOptions() should', () => {
+  beforeAll(() => {
+    jest.useFakeTimers().setSystemTime(currentDate);
+  });
+  afterAll(() => {
+    jest.useRealTimers();
+  });
   test('use default options if none passed', () => {
     expect(parseOptions()).toEqual({
       defaultHour: '9',
       defaultMinute: '0',
-      startDate: new Date(),
+      startDate: currentDate,
       startOfWeek: '1',
     });
   });
@@ -13,7 +20,7 @@ describe('parseOptions() should', () => {
     expect(parseOptions({ preset: 'system' })).toEqual({
       defaultHour: '0',
       defaultMinute: '0',
-      startDate: new Date(),
+      startDate: currentDate,
       startOfWeek: '1',
     });
   });
@@ -21,7 +28,7 @@ describe('parseOptions() should', () => {
     expect(parseOptions({ defaultHour: '7', defaultMinute: '45' })).toEqual({
       defaultHour: '7',
       defaultMinute: '45',
-      startDate: new Date(),
+      startDate: currentDate,
       startOfWeek: '1',
     });
     // Custom values should override default
@@ -30,7 +37,7 @@ describe('parseOptions() should', () => {
     ).toEqual({
       defaultHour: '7',
       defaultMinute: '45',
-      startDate: new Date(),
+      startDate: currentDate,
       startOfWeek: '1',
     });
   });
