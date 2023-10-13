@@ -7,6 +7,7 @@ export type TokenDef = {
 
 export enum TokenType {
   MINUTE = 'minutes',
+  HOUR = 'hours',
   NUMBER = 'number',
   EXCLUDE = 'exclude',
   FREQUENCY = 'frequency',
@@ -36,6 +37,9 @@ export type TokenMap = Record<string, TokenDef>;
 export const tokens = {
   [TokenType.MINUTE]: {
     test: '^(minutes|minute|mins|min)$',
+  },
+  [TokenType.HOUR]: {
+    test: '^(hours|hour|hrs|hr)$',
   },
   [TokenType.NUMBER]: {
     test: `^(\\d+|${numberStringRegexOptions})$`,

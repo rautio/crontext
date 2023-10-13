@@ -38,3 +38,19 @@ describe('Number token should', () => {
     expect(re.test('q8a03')).toBe(false);
   });
 });
+
+describe('Hour token should', () => {
+  const re = new RegExp(tokens[TokenType.HOUR].test);
+  test('match on different formats', () => {
+    expect(re.test('hours')).toBe(true);
+    expect(re.test('hour')).toBe(true);
+    expect(re.test('hrs')).toBe(true);
+    expect(re.test('hr')).toBe(true);
+  });
+  test('not match in incorrect format', () => {
+    expect(re.test('h')).toBe(false);
+    expect(re.test('hors')).toBe(false);
+    expect(re.test('house')).toBe(false);
+    expect(re.test('hers')).toBe(false);
+  });
+});

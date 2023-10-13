@@ -45,3 +45,12 @@ Every week
 
 Every weekd
 * * * * *
+
+Every two Hours
+0 */2 * * *
+
+Every hour
+0 * * * *
+
+Every 12 hrs
+0 */12 * * *

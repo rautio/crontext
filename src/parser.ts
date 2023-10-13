@@ -18,7 +18,7 @@ export const INIT = '_'; // Used to know whether the value has been set at all.
 export const DEFAULT_DAY_MINUTES = '0';
 export const DEFAULT_DAY_HOURS = '9';
 
-const { FREQUENCY, NUMBER, MINUTE, CLOCK, DAY } = TokenType;
+const { FREQUENCY, NUMBER, MINUTE, CLOCK, DAY, HOUR } = TokenType;
 
 const defaultParsed: Parsed = {
   minutes: INIT,
@@ -47,6 +47,22 @@ export const rules = [
     match: [FREQUENCY, MINUTE],
     update: (crontext: Parsed): Parsed => {
       crontext.minutes = DEFAULT;
+      crontext.hour = DEFAULT;
+      return crontext;
+    },
+  },
+  {
+    match: [FREQUENCY, NUMBER, HOUR],
+    update: (crontext: Parsed, tokens: Token[]): Parsed => {
+      if (crontext.minutes === INIT) crontext.minutes = '0';
+      crontext.hour = '*/' + getNumber(tokens[1].value);
+      return crontext;
+    },
+  },
+  {
+    match: [FREQUENCY, HOUR],
+    update: (crontext: Parsed): Parsed => {
+      crontext.minutes = '0';
       crontext.hour = DEFAULT;
       return crontext;
     },
