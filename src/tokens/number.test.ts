@@ -10,6 +10,7 @@ describe('Number token getNumber() should', () => {
     expect(getNumber('ninety-nine')).toEqual(99);
     expect(getNumber('twenty three')).toEqual(23);
     expect(getNumber('sixty-seven')).toEqual(67);
+    expect(getNumber('a')).toEqual(1);
   });
   test('return the same number as literally written', () => {
     expect(getNumber('2')).toEqual(2);

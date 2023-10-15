@@ -51,7 +51,7 @@ export const tokens = {
     test: '^(tomorrow)$',
   },
   [TokenType.NUMBER]: {
-    test: `^(\\d+|${numberStringRegexOptions})$`,
+    test: `^(\\d+|${numberStringRegexOptions})$|^a$`,
   },
   [TokenType.FREQUENCY]: {
     test: '^(every|each|every other|at|on|next)$',

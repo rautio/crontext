@@ -26,6 +26,7 @@ describe('Number token should', () => {
   const re = new RegExp(tokens[TokenType.NUMBER].test);
   test('match on different formats', () => {
     expect(re.test('1')).toBe(true);
+    expect(re.test('a')).toBe(true);
     expect(re.test('30')).toBe(true);
     expect(re.test('100')).toBe(true);
     expect(re.test('60')).toBe(true);

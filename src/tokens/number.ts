@@ -46,6 +46,7 @@ const numberMap: Record<string, number> = { ...digits, ...ten, ...tens };
  * @param str
  */
 export const getNumber = (str: string): number => {
+  if (str === 'a') return 1;
   const isLiteral = !isNaN(Number(str));
   // If its a literal number like '2' - just return that
   if (isLiteral) {
