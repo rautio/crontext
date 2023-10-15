@@ -54,7 +54,7 @@ export const tokens = {
     test: `^(\\d+|${numberStringRegexOptions})$`,
   },
   [TokenType.FREQUENCY]: {
-    test: '^(every|each|every other|at|on)$',
+    test: '^(every|each|every other|at|on|next)$',
   },
   [TokenType.OCCURENCE]: {
     test: '^(in)$',

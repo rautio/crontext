@@ -1,5 +1,5 @@
 export const dayRegexOptions =
-  '(mon|tues|tue|wed|thurs|thur|fri|sat|sun)(day)?|week(day|end)?';
+  'month|(mon|tues|tue|wed|thurs|thur|fri|sat|sun)(day)?|week(day|end)?';
 
 const weekMap: Record<string, string> = {
   sun: '0',

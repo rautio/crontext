@@ -84,6 +84,12 @@ export const rules = [
       // 'On monday' -> 9am Monday
       if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
       if (crontext.hour === INIT) crontext.hour = options.defaultHour;
+      if (tokens[1].value === 'month') {
+        if (crontext.dayOfMonth === INIT) crontext.dayOfMonth = '1';
+        const nextDate = new Date(options.startDate.getTime());
+        nextDate.setMonth(nextDate.getMonth() + 1);
+        return { ...crontext, month: nextDate.getMonth().toString() };
+      }
       const dayOfWeek = getDayOfWeek(tokens[1].value);
       return { ...crontext, dayOfWeek };
     },
