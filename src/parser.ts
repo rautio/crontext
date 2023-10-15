@@ -18,17 +18,8 @@ export const INIT = '_'; // Used to know whether the value has been set at all.
 export const DEFAULT_DAY_MINUTES = '0';
 export const DEFAULT_DAY_HOURS = '9';
 
-const {
-  FREQUENCY,
-  OCCURENCE,
-  NUMBER,
-  MINUTE,
-  CLOCK,
-  DAY,
-  HOUR,
-  DAYS,
-  RELATIVE_DAY,
-} = TokenType;
+const { FREQUENCY, NUMBER, MINUTE, CLOCK, DAY, HOUR, DAYS, RELATIVE_DAY } =
+  TokenType;
 
 const defaultParsed: Parsed = {
   minutes: INIT,
@@ -36,6 +27,51 @@ const defaultParsed: Parsed = {
   dayOfMonth: INIT,
   dayOfWeek: INIT,
   month: INIT,
+};
+
+export const updateDays = (
+  crontext: Parsed,
+  tokens: Token[],
+  options: Options,
+): Parsed => {
+  // Default like 'next week'
+  let delta = 1;
+  let setDate = true;
+  if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
+  if (crontext.hour === INIT) crontext.hour = options.defaultHour;
+  // Specified the number like 'in 3 days', 'in 2 weeks', etc.
+  if (tokens.length === 3) {
+    delta = getNumber(tokens[1].value);
+  }
+  if (tokens[tokens.length - 1].value.indexOf('month') > -1) {
+    const nextDate = new Date(options.startDate.getTime());
+    nextDate.setMonth(nextDate.getMonth() + delta);
+    // 'next month'
+    if (crontext.dayOfMonth === INIT && tokens.length == 2) {
+      crontext.dayOfMonth = '1';
+    } else {
+      crontext.dayOfMonth = nextDate.getDate().toString();
+    }
+    return {
+      ...crontext,
+      month: nextDate.getMonth().toString(),
+    };
+  }
+  // Day or week (month would have been returned above)
+  if (tokens[tokens.length - 1].value.indexOf('week') > -1) {
+    if (tokens.length === 2) {
+      crontext.dayOfWeek = '1';
+      setDate = false;
+    }
+    delta *= 7;
+  }
+  if (setDate) {
+    const { startDate } = options;
+    const nextDate = new Date(startDate.getTime());
+    nextDate.setDate(nextDate.getDate() + delta);
+    crontext.dayOfMonth = nextDate.getDate().toString();
+  }
+  return crontext;
 };
 
 /**
@@ -78,18 +114,20 @@ export const rules = [
     },
   },
   {
+    match: [FREQUENCY, DAYS],
+    update: updateDays,
+  },
+  {
+    match: [FREQUENCY, NUMBER, DAYS],
+    update: updateDays,
+  },
+  {
     match: [FREQUENCY, DAY],
     update: (crontext: Parsed, tokens: Token[], options: Options): Parsed => {
       // If there are no minutes or hour set we use defaults
       // 'On monday' -> 9am Monday
       if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
       if (crontext.hour === INIT) crontext.hour = options.defaultHour;
-      if (tokens[1].value === 'month') {
-        if (crontext.dayOfMonth === INIT) crontext.dayOfMonth = '1';
-        const nextDate = new Date(options.startDate.getTime());
-        nextDate.setMonth(nextDate.getMonth() + 1);
-        return { ...crontext, month: nextDate.getMonth().toString() };
-      }
       const dayOfWeek = getDayOfWeek(tokens[1].value);
       return { ...crontext, dayOfWeek };
     },
@@ -105,19 +143,6 @@ export const rules = [
         if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
         if (crontext.hour === INIT) crontext.hour = options.defaultHour;
       }
-      return crontext;
-    },
-  },
-  {
-    match: [OCCURENCE, NUMBER, DAYS],
-    update: (crontext: Parsed, tokens: Token[], options: Options): Parsed => {
-      const delta = getNumber(tokens[1].value);
-      const { startDate } = options;
-      const nextDate = new Date(startDate.getTime());
-      nextDate.setDate(nextDate.getDate() + delta);
-      crontext.dayOfMonth = nextDate.getDate().toString();
-      if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
-      if (crontext.hour === INIT) crontext.hour = options.defaultHour;
       return crontext;
     },
   },

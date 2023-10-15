@@ -11,7 +11,6 @@ export enum TokenType {
   NUMBER = 'number',
   EXCLUDE = 'exclude',
   FREQUENCY = 'frequency',
-  OCCURENCE = 'occurence',
   DAY = 'day',
   DAYS = 'days',
   RELATIVE_DAY = 'relative day',
@@ -45,7 +44,7 @@ export const tokens = {
     test: '^(hours|hour|hrs|hr)$',
   },
   [TokenType.DAYS]: {
-    test: '^(days|day)$',
+    test: 'month|^(days|day|foo|month|months|week|weeks)$',
   },
   [TokenType.RELATIVE_DAY]: {
     test: '^(tomorrow)$',
@@ -54,16 +53,13 @@ export const tokens = {
     test: `^(\\d+|${numberStringRegexOptions})$|^a$`,
   },
   [TokenType.FREQUENCY]: {
-    test: '^(every|each|every other|at|on|next)$',
-  },
-  [TokenType.OCCURENCE]: {
-    test: '^(in)$',
+    test: '^(every|each|every other|at|on|in|next)$',
   },
   [TokenType.CLOCK]: {
     test: /^(\d?\d:\d\d|\d)[ ]?(am|pm|AM|PM)|\d\d:\d\d|midnight|noon$/,
   },
   [TokenType.DAY]: {
-    test: `^${dayRegexOptions}$`,
+    test: `${dayRegexOptions}`,
   },
   [TokenType.EXCLUDE]: {
     test: '^(except|excluding)$',

@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync } from 'fs';
 import { parseText } from '../../src/index';
 
-const currentDate = new Date('2023-1-1');
+const currentDate = new Date('2023-3-4');
 
 const path = require('path');
 
