@@ -65,6 +65,15 @@ describe('getNums() should', () => {
     expect(getNums('0-23', 24)).toEqual([]);
     expect(getNums('0-11', 12)).toEqual([]);
   });
+  test('Not allow duplicate options', () => {
+    expect(getNums('0-10', 6)).toHaveLength(6);
+    expect(getNums('0-10', 6)).toEqual([0, 1, 2, 3, 4, 5]);
+    expect(getNums('2,3,4,4,4', 6)).toEqual([2, 3, 4]);
+  });
+  test('Not allow values greater than max', () => {
+    expect(getNums('80', 60)).toEqual([20]);
+    expect(getNums('50,70,80', 60)).toEqual([10, 20, 50]);
+  });
   test('Return a single number', () => {
     expect(getNums('2', 24)).toEqual([2]);
     expect(getNums('0', 24)).toEqual([0]);

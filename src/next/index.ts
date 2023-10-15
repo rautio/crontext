@@ -1,3 +1,11 @@
+export const onlyUnique = (
+  value: number,
+  index: number,
+  array: Array<number>,
+) => {
+  return array.indexOf(value) === index;
+};
+
 /**
  * Creates an array of sorted number values given a single cron format string.
  * Note: Does not support '/' format
@@ -8,7 +16,7 @@ export const getNums = (str: string, units: number): Array<number> => {
   const isNum = !isNaN(Number(str));
   let res: Array<number> = [];
   if (isNum) {
-    res.push(Number(str));
+    res.push(Number(str) % units);
   } else if (str.indexOf(',') > -1) {
     const splits = str.split(',');
     splits.forEach(split => {
@@ -39,7 +47,8 @@ export const getNums = (str: string, units: number): Array<number> => {
   // If the range is the full range its the same as '*' and should return empty array
   if (res.length === units) return [];
   // '*' returns empty array.
-  return res.sort((a, b) => a - b);
+  // All items should be unique
+  return res.sort((a, b) => a - b).filter(onlyUnique);
 };
 /**
  * Given an array of possible next values find the closest one that comes next in the order.
@@ -187,7 +196,7 @@ export const iterDate = (date: Date, cron: string): Date => {
   // Validate largest items first (smaller ones will spill over and re-run checks)
   const monthSchedule = getNums(month, 12);
   const dayWeekSchedule = getNums(dayWeek, 7);
-  const dayMonthSchedule = getNums(dayMonth, 31); // How do we know? Depends on the month.
+  const dayMonthSchedule = getNums(dayMonth, 32); // How do we know? Depends on the month.
   const hourSchedule = getNums(hour, 24);
   const minuteSchedule = getNums(minute, 60);
   // Validate minute
