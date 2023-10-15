@@ -3,6 +3,7 @@ import Editor from '@/components/Editor';
 import Link from 'next/link';
 import Explain from '@/icons/Explain';
 import { Separator } from '@/components/ui/separator';
+import ErrorBoundary from '@/components/ErrorBoundary';
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -18,7 +19,9 @@ export default function Home() {
             is currently under development.
           </p>
         </section>
-        <Editor />
+        <ErrorBoundary>
+          <Editor />
+        </ErrorBoundary>
 
         <p className="text-sm text-neutral-400 text-center mt-4">
           For issues and feedback checkout the{' '}

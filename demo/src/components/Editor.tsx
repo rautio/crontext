@@ -30,6 +30,7 @@ export const Editor = () => {
           className="text-2xl tracking-[0.75rem] w-30 text-center"
         />
         <Button
+          variant="secondary"
           onClick={() => {
             navigator.clipboard.writeText(cron);
             setIsCopied(true);
