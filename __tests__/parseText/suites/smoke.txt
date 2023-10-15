@@ -22,6 +22,9 @@ At 2pm
 at 20:15
 15 20 * * *
 
+At 6:30
+30 6 * * *
+
 At 9am
 0 9 * * *
 
@@ -45,7 +48,6 @@ Every week
 
 Every month
 0 9 1 * *
-
 
 Every weekd
 * * * * *

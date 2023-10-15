@@ -60,7 +60,7 @@ export const tokens = {
     test: '^(every|each|every other|at|on)$',
   },
   [TokenType.CLOCK]: {
-    test: /^(\d?\d:\d\d|\d)[ ]?(am|pm|AM|PM)|\d\d:\d\d|midnight|noon$/,
+    test: /^(\d?\d:\d\d|\d)[ ]?(am|pm|AM|PM)?|\d\d:\d\d|midnight|noon$/,
   },
   [TokenType.DAY]: {
     test: `${dayRegexOptions}`,
