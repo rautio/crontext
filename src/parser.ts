@@ -18,8 +18,17 @@ export const INIT = '_'; // Used to know whether the value has been set at all.
 export const DEFAULT_DAY_MINUTES = '0';
 export const DEFAULT_DAY_HOURS = '9';
 
-const { FREQUENCY, NUMBER, MINUTE, CLOCK, DAY, HOUR, DAYS, RELATIVE_DAY } =
-  TokenType;
+const {
+  FREQUENCY,
+  OCCURRENCE,
+  NUMBER,
+  MINUTE,
+  CLOCK,
+  DAY,
+  HOUR,
+  DAYS,
+  RELATIVE_DAY,
+} = TokenType;
 
 const defaultParsed: Parsed = {
   minutes: INIT,
@@ -27,6 +36,19 @@ const defaultParsed: Parsed = {
   dayOfMonth: INIT,
   dayOfWeek: INIT,
   month: INIT,
+};
+
+export const updateDay = (
+  crontext: Parsed,
+  tokens: Token[],
+  options: Options,
+): Parsed => {
+  // If there are no minutes or hour set we use defaults
+  // 'On monday' -> 9am Monday
+  if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
+  if (crontext.hour === INIT) crontext.hour = options.defaultHour;
+  const dayOfWeek = getDayOfWeek(tokens[1].value);
+  return { ...crontext, dayOfWeek };
 };
 
 export const updateDays = (
@@ -114,22 +136,33 @@ export const rules = [
     },
   },
   {
-    match: [FREQUENCY, DAYS],
+    match: [OCCURRENCE, DAYS],
     update: updateDays,
   },
   {
-    match: [FREQUENCY, NUMBER, DAYS],
+    match: [OCCURRENCE, NUMBER, DAYS],
     update: updateDays,
+  },
+  {
+    match: [OCCURRENCE, DAY],
+    update: updateDay,
   },
   {
     match: [FREQUENCY, DAY],
+    update: updateDay,
+  },
+  {
+    match: [FREQUENCY, DAYS],
     update: (crontext: Parsed, tokens: Token[], options: Options): Parsed => {
-      // If there are no minutes or hour set we use defaults
-      // 'On monday' -> 9am Monday
       if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
       if (crontext.hour === INIT) crontext.hour = options.defaultHour;
-      const dayOfWeek = getDayOfWeek(tokens[1].value);
-      return { ...crontext, dayOfWeek };
+      if (tokens[1].value.indexOf('month') > -1) {
+        crontext.dayOfMonth = '1';
+      }
+      if (tokens[1].value.indexOf('week') > -1) {
+        crontext.dayOfWeek = options.startOfWeek;
+      }
+      return crontext;
     },
   },
   {

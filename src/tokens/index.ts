@@ -11,6 +11,7 @@ export enum TokenType {
   NUMBER = 'number',
   EXCLUDE = 'exclude',
   FREQUENCY = 'frequency',
+  OCCURRENCE = 'occurrence',
   DAY = 'day',
   DAYS = 'days',
   RELATIVE_DAY = 'relative day',
@@ -52,8 +53,11 @@ export const tokens = {
   [TokenType.NUMBER]: {
     test: `^(\\d+|${numberStringRegexOptions})$|^a$`,
   },
+  [TokenType.OCCURRENCE]: {
+    test: '^(in|next)$',
+  },
   [TokenType.FREQUENCY]: {
-    test: '^(every|each|every other|at|on|in|next)$',
+    test: '^(every|each|every other|at|on)$',
   },
   [TokenType.CLOCK]: {
     test: /^(\d?\d:\d\d|\d)[ ]?(am|pm|AM|PM)|\d\d:\d\d|midnight|noon$/,

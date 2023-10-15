@@ -43,6 +43,10 @@ On Wednesday at 2:13pm
 Every week
 0 9 * * 1
 
+Every month
+0 9 1 * *
+
+
 Every weekd
 * * * * *
 
