@@ -48,7 +48,7 @@ export const Editor = () => {
       </div>
       <div className="text-sm text-neutral-400 text-center mt-4">
         Next Occurrence:{' '}
-        <span className="text-neutral-50">
+        <span className="text-neutral-50" suppressHydrationWarning>
           {date.toLocaleDateString('en-us', {
             weekday: 'long',
             year: 'numeric',
