@@ -45,7 +45,7 @@ export const tokens = {
     test: '^(hours|hour|hrs|hr)$',
   },
   [TokenType.DAYS]: {
-    test: 'month|^(days|day|foo|month|months|week|weeks)$',
+    test: 'month|^(days|day|month|months|week|weeks)$',
   },
   [TokenType.RELATIVE_DAY]: {
     test: '^(tomorrow)$',
