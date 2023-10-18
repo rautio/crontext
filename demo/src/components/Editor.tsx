@@ -1,9 +1,11 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { parseText, nextDate } from 'crontext';
+import { parseText, nextDate, version } from 'crontext';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Copy from '@/icons/Copy';
+
+console.log({ crontext: version });
 
 export const Editor = () => {
   const [text, setText] = useState('Every minute');
