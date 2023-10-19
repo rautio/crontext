@@ -40,6 +40,15 @@ At every minute on monday
 On Friday
 0 9 * * 5
 
+On Wednesdays
+0 9 * * 3
+
+On weekdays
+0 9 * * 1-5
+
+On Weekends
+0 9 * * 0,6
+
 On Wednesday at 2:13pm
 13 14 * * 3
 
