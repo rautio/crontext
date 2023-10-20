@@ -801,10 +801,10 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
-crontext@^0.2.9:
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/crontext/-/crontext-0.2.9.tgz#f9a3d12214dc68beba72791f52b21bc3a595e59b"
-  integrity sha512-LZv3BavLJXKCaFysVMJmOrgEpPICtzLo4F5J3BLw38MS3K3Zb1IjWuvwo/3Tl5EnacWls6f2yRv1ZEAcEcJ1uw==
+crontext@^0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/crontext/-/crontext-0.2.10.tgz#2e4790ca0afcda939d1a16a37ba6be19edaf4872"
+  integrity sha512-LW84Jbm8PwT2SKwNuWtI9xtnH1V0o6JsKL2c3DfclUWjJ0v+XLrsxaVvMVBJmwk2rgD4D4BYRk6ET0n8EpfBxA==
 
 cross-spawn@^7.0.2:
   version "7.0.3"

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { parseText, nextDate, version } from 'crontext';
+import { parseText, nextDate, version, crontext } from 'crontext';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Copy from '@/icons/Copy';
@@ -11,6 +11,7 @@ export const Editor = () => {
   const [text, setText] = useState('Every minute');
   const [isCopied, setIsCopied] = useState(false);
   const cron = parseText(text);
+  const crtx = crontext(text);
   const date = nextDate(cron, new Date());
   useEffect(() => {
     if (isCopied) {
@@ -59,6 +60,12 @@ export const Editor = () => {
             hour: 'numeric',
             minute: 'numeric',
           })}
+        </span>
+      </div>
+      <div className="text-sm text-neutral-400 text-center mt-4">
+        Repeats:{' '}
+        <span className="text-neutral-50" suppressHydrationWarning>
+          {crtx.repeat ? 'Yes' : 'No'}
         </span>
       </div>
     </div>
