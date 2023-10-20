@@ -1,5 +1,8 @@
 export const dayRegexOptions =
-  '^(mon|tues|tue|wed|wednes|thurs|thur|fri|sat|sun)(day|days)?$|weekday|weekend|weekdays|weekends$';
+  '^(mon|tues|tue|wed|wednes|thurs|thur|fri|sat|satur|sun)(day|days)?$|weekday|weekend|weekdays|weekends$';
+
+export const pluralDayRegexOptions =
+  '^(mon|tues|tue|wed|wednes|thurs|thur|fri|sat|satur|sun)(days)?$|weekdays|weekends$';
 
 const weekMap: Record<string, string> = {
   sun: '0',

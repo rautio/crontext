@@ -1,6 +1,6 @@
 {
   "name": "crontext",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Simple utility for parsing human text into a cron schedule.",
   "files": [
     "lib"
@@ -9,9 +9,9 @@
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "node ./scripts/jest-runner.js --config jest.config.js --watch",
-    "test:ci": "node ./scripts/jest-runner.js --config jest.config.js src __tests__ --suite=smoke",
+    "test:ci": "node ./scripts/jest-runner.js --config jest.config.js src __tests__ --suite=smoke,repeat",
     "coverage": "yarn test:ci -- --coverage",
-    "test:smoke": "node ./scripts/jest-runner.js --config jest.config.js --suite=smoke __tests__",
+    "test:smoke": "node ./scripts/jest-runner.js --config jest.config.js --suite=smoke,repeat __tests__",
     "build": "rm -rf lib && tsc",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",

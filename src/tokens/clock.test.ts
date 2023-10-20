@@ -11,7 +11,7 @@ describe('Clock token getTime() should', () => {
     expect(getTime('17:00')).toEqual([17, 0]);
   });
   test('return the correct clock time for special names', () => {
-    expect(getTime('midnight')).toEqual([24, 0]);
+    expect(getTime('midnight')).toEqual([0, 0]);
     expect(getTime('noon')).toEqual([12, 0]);
   });
 });

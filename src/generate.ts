@@ -1,4 +1,4 @@
-import { Parsed, INIT, DEFAULT } from './parser';
+import { type Crontext, INIT, DEFAULT } from './parser';
 
 /**
  * CRON FORMAT:
@@ -19,7 +19,7 @@ const getValue = (str: string): string => {
   return str;
 };
 
-export const generate = (parsed: Parsed): string => {
+export const generate = (parsed: Crontext): string => {
   return `${getValue(parsed.minutes)} ${getValue(parsed.hour)} ${getValue(
     parsed.dayOfMonth,
   )} ${getValue(parsed.month)} ${getValue(parsed.dayOfWeek)}`;

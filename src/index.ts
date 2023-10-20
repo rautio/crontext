@@ -1,5 +1,5 @@
 import tokenize from './tokenize';
-import parse from './parser';
+import parse, { type Crontext } from './parser';
 import { generate } from './generate';
 import * as next from './next';
 import { parseOptions } from './options';
@@ -14,6 +14,12 @@ export const parseText = (input: string, options?: InputOptions): string => {
   return cron;
 };
 
+export const crontext = (input: string, options?: InputOptions): Crontext => {
+  const tokens = tokenize(input);
+  const parsed = parse(tokens, parseOptions(options));
+  return parsed;
+};
+
 export const nextDate = next.nextDate;
 
 export const version = pJson.version;
@@ -25,4 +31,4 @@ export const version = pJson.version;
  *   - repeat: bool
  */
 
-export default parseText;
+export default crontext;

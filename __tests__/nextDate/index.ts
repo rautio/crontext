@@ -9,11 +9,8 @@ type Case = {
   output: string;
 };
 
-const envSuite = process.env.TEST_SUITE;
-let suites = readdirSync(path.join(__dirname, './suites'));
-if (envSuite && envSuite !== 'undefined') {
-  suites = [envSuite + '.txt'];
-}
+// No flag filtering since only smoke tests exist
+const suites = readdirSync(path.join(__dirname, './suites'));
 suites.forEach(name => {
   describe('nextDate test suite: ' + name, () => {
     const content = readFileSync(

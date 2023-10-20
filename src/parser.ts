@@ -1,16 +1,18 @@
 import type { Token } from './tokenize';
 import { TokenType } from './tokens';
+import { testRepeat as freqTestRepeat } from './tokens/frequency';
 import { getNumber } from './tokens/number';
 import { getTime } from './tokens/clock';
-import { getDayOfWeek } from './tokens/day';
+import { getDayOfWeek, pluralDayRegexOptions } from './tokens/day';
 import type { Options } from './options';
 
-export type Parsed = {
+export type Crontext = {
   minutes: string;
   hour: string;
   dayOfMonth: string;
   dayOfWeek: string;
   month: string;
+  repeat: boolean;
 };
 
 export const DEFAULT = '*';
@@ -30,32 +32,42 @@ const {
   RELATIVE_DAY,
 } = TokenType;
 
-const defaultParsed: Parsed = {
+const defaultParsed: Crontext = {
   minutes: INIT,
   hour: INIT,
   dayOfMonth: INIT,
   dayOfWeek: INIT,
   month: INIT,
+  repeat: false,
 };
 
 export const updateDay = (
-  crontext: Parsed,
+  crontext: Crontext,
   tokens: Token[],
   options: Options,
-): Parsed => {
+): Crontext => {
   // If there are no minutes or hour set we use defaults
   // 'On monday' -> 9am Monday
   if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
   if (crontext.hour === INIT) crontext.hour = options.defaultHour;
+  const re = new RegExp(pluralDayRegexOptions);
+  // Plural 'on mondays' means its repeating
+  if (
+    tokens.length >= 2 &&
+    tokens[0].value === 'on' &&
+    re.test(tokens[1].value)
+  ) {
+    crontext.repeat = true;
+  }
   const dayOfWeek = getDayOfWeek(tokens[1].value);
   return { ...crontext, dayOfWeek };
 };
 
 export const updateDays = (
-  crontext: Parsed,
+  crontext: Crontext,
   tokens: Token[],
   options: Options,
-): Parsed => {
+): Crontext => {
   // Default like 'next week'
   let delta = 1;
   let setDate = true;
@@ -105,15 +117,25 @@ export const updateDays = (
 // The grammar
 export const rules = [
   {
+    match: [FREQUENCY],
+    update: (crontext: Crontext, tokens: Token[]): Crontext => {
+      const re = new RegExp(freqTestRepeat);
+      if (re.test(tokens[0].value)) {
+        crontext.repeat = true;
+      }
+      return crontext;
+    },
+  },
+  {
     match: [FREQUENCY, NUMBER, MINUTE],
-    update: (crontext: Parsed, tokens: Token[]): Parsed => {
+    update: (crontext: Crontext, tokens: Token[]): Crontext => {
       crontext.minutes = '*/' + getNumber(tokens[1].value);
       return crontext;
     },
   },
   {
     match: [FREQUENCY, MINUTE],
-    update: (crontext: Parsed): Parsed => {
+    update: (crontext: Crontext): Crontext => {
       crontext.minutes = DEFAULT;
       crontext.hour = DEFAULT;
       return crontext;
@@ -121,7 +143,7 @@ export const rules = [
   },
   {
     match: [FREQUENCY, NUMBER, HOUR],
-    update: (crontext: Parsed, tokens: Token[]): Parsed => {
+    update: (crontext: Crontext, tokens: Token[]): Crontext => {
       if (crontext.minutes === INIT) crontext.minutes = '0';
       crontext.hour = '*/' + getNumber(tokens[1].value);
       return crontext;
@@ -129,7 +151,7 @@ export const rules = [
   },
   {
     match: [FREQUENCY, HOUR],
-    update: (crontext: Parsed): Parsed => {
+    update: (crontext: Crontext): Crontext => {
       crontext.minutes = '0';
       crontext.hour = DEFAULT;
       return crontext;
@@ -153,7 +175,11 @@ export const rules = [
   },
   {
     match: [FREQUENCY, DAYS],
-    update: (crontext: Parsed, tokens: Token[], options: Options): Parsed => {
+    update: (
+      crontext: Crontext,
+      tokens: Token[],
+      options: Options,
+    ): Crontext => {
       if (crontext.minutes === INIT) crontext.minutes = options.defaultMinute;
       if (crontext.hour === INIT) crontext.hour = options.defaultHour;
       if (tokens[1].value.indexOf('month') > -1) {
@@ -167,7 +193,11 @@ export const rules = [
   },
   {
     match: [RELATIVE_DAY],
-    update: (crontext: Parsed, tokens: Token[], options: Options): Parsed => {
+    update: (
+      crontext: Crontext,
+      tokens: Token[],
+      options: Options,
+    ): Crontext => {
       if (tokens[0].value === 'tomorrow') {
         const { startDate } = options;
         const tomorrow = new Date(startDate.getTime());
@@ -181,7 +211,7 @@ export const rules = [
   },
   {
     match: [FREQUENCY, CLOCK],
-    update: (crontext: Parsed, tokens: Token[]): Parsed => {
+    update: (crontext: Crontext, tokens: Token[]): Crontext => {
       const [hour, minute] = getTime(tokens[1].value);
       crontext.minutes = minute.toString();
       crontext.hour = hour.toString();
@@ -190,7 +220,7 @@ export const rules = [
   },
 ];
 
-export const parser = (tokens: Token[], options: Options): Parsed => {
+export const parser = (tokens: Token[], options: Options): Crontext => {
   let crontext = { ...defaultParsed };
   // Iterate all tokens
   for (let t = 0; t < tokens.length; t++) {

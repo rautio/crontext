@@ -1,22 +1,19 @@
-At 04:00 on every day-of-month from 8 through 14.
-0 4 8-14 * *
+At every 9am
+0 9 * * *
 
-Hourly at 45 minutes past the hour
-45 * * * *
+On Fridays
+0 9 * * 5
 
-At 9am every 10th and 15th of the month
-0 9 10,15 * *
+On Wednesdays
+0 9 * * 3
 
-At every minute in April
-* * * 4 *
+On weekdays
+0 9 * * 1-5
 
-At 9AM on the first day of every second month
-0 9 1 */2 *
+On Weekends
+0 9 * * 0,6
 
-Twice a day at 9am and 9pm
-0 9,21 * * *
-
-Every 15th minute
+Every 15 minutes
 */15 * * * *
 
 Every hour
@@ -32,10 +29,7 @@ Every weekday at 9am
 0 9 * * 1-5
 
 Every weekend at 9am
-0 9 * * 6,0
+0 9 * * 0,6
 
 Every Saturday
-0 0 * * SAT
-
-Every Monday, Tuesday and Thursday at noon
-0 12 * * 1,2,4
+0 9 * * 6

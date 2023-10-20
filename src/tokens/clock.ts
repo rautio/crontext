@@ -9,7 +9,7 @@ export type Time = {
  * @returns [hour, minute]
  */
 export const getTime = (str: string): [number, number] => {
-  if (str === 'midnight') return [24, 0];
+  if (str === 'midnight') return [0, 0];
   if (str === 'noon') return [12, 0];
   const re = new RegExp('([0-9]+)[:]?([0-9]+)?');
   const match = re.exec(str);

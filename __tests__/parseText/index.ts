@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync } from 'fs';
-import { parseText } from '../../src/index';
+import { parseText, crontext } from '../../src/index';
 
 const currentDate = new Date('2023-3-4');
 
@@ -16,7 +16,7 @@ type Case = {
 const envSuite = process.env.TEST_SUITE;
 let suites = readdirSync(path.join(__dirname, './suites'));
 if (envSuite && envSuite !== 'undefined') {
-  suites = [envSuite + '.txt'];
+  suites = envSuite.split(',').map(suite => `${suite}.txt`);
 }
 suites.forEach(name => {
   describe('Crontext test suite: ' + name, () => {
@@ -46,6 +46,11 @@ suites.forEach(name => {
     cases.forEach(({ input, output }) => {
       test(input, () => {
         expect(parseText(input)).toEqual(output);
+        if (name === 'repeat.txt') {
+          expect(crontext(input)).toEqual(
+            expect.objectContaining({ repeat: true }),
+          );
+        }
       });
     });
   });
