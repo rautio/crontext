@@ -29,7 +29,7 @@ export const Editor = () => {
         <Input
           readOnly
           value={cron}
-          className="text-2xl tracking-[0.75rem] w-30 text-center"
+          className="text-xl tracking-[0.75rem] text-center font-mono w-[300px]"
         />
         <Button
           variant="secondary"
