@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import { cn } from '@/lib/utils';
 
 const lato = Lato({
@@ -25,7 +26,10 @@ export default function RootLayout({
       style={{ colorScheme: 'dark' }}
     >
       <link rel="icon" href="/images/favicon.ico" sizes="any" />
-      <body className={lato.className}>{children}</body>
+      <body className={lato.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
