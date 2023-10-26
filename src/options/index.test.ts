@@ -41,4 +41,21 @@ describe('parseOptions() should', () => {
       startOfWeek: '1',
     });
   });
+  test('use custom start of week', () => {
+    expect(parseOptions({ startOfWeek: '0' })).toEqual({
+      defaultHour: '9',
+      defaultMinute: '0',
+      startDate: currentDate,
+      startOfWeek: '0',
+    });
+  });
+  test('use custom start date', () => {
+    const newDate = new Date('2023-01-01');
+    expect(parseOptions({ startDate: newDate })).toEqual({
+      defaultHour: '9',
+      defaultMinute: '0',
+      startDate: newDate,
+      startOfWeek: '1',
+    });
+  });
 });
