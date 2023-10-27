@@ -24,7 +24,7 @@ export class AppHeader extends LitElement {
           <div class="">
             <span>Github</span>
             <span class="">
-              <github></github>
+              <img src=${github} class="github-logo" alt="Github logo" />
             </span>
           </div>
         </a>

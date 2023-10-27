@@ -1,6 +1,8 @@
 .app-header {
   border-bottom: 1px solid #262626;
   display: flex;
+  height: 60px;
+  line-height: 60px;
 }
 
 .app-header a {
