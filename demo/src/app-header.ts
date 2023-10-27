@@ -9,9 +9,10 @@ export class AppHeader extends LitElement {
   render() {
     return html`
       <header class="app-header">
-        <div class="logo">
+        <div class="logo-container">
           <a href="/">
             <image
+              class="logo"
               alt="Crontext"
               src="/images/logo.svg"
               width="32"

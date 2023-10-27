@@ -13,8 +13,12 @@
   }
 }
 
-.logo {
+.logo-container {
   flex-grow: 1;
+}
+
+.logo {
+  vertical-align: middle;
 }
 
 .logo-text {
