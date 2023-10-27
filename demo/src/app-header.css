@@ -1,0 +1,20 @@
+.app-header {
+  border-bottom: 1px solid #262626;
+  display: flex;
+}
+
+.app-header a {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: #0ea5e9;
+  }
+}
+
+.logo {
+  flex-grow: 1;
+}
+
+.logo-text {
+  line-height: 32px;
+}

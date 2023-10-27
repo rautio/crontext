@@ -1,9 +1,11 @@
+'use client';
 import Header from '@/components/Header';
 import Editor from '@/components/Editor';
 import Link from 'next/link';
 import Explain from '@/icons/Explain';
 import { Separator } from '@/components/ui/separator';
 import ErrorBoundary from '@/components/ErrorBoundary';
+// import '@/components/Header';
 export default function Home() {
   return (
     <div className="min-h-screen">
