@@ -1,11 +1,41 @@
 .app-header {
   border-bottom: 1px solid #262626;
-  display: flex;
+}
+
+.header-content {
   height: 60px;
   line-height: 60px;
+  max-width: 60%;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  display: flex;
+  margin: auto;
+  min-width: 200px;
+  max-width: 72rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .header-content {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .header-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .header-content {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 .app-header a {
+  display: flex;
   color: white;
   text-decoration: none;
   &:hover {
@@ -14,13 +44,21 @@
 }
 
 .logo-container {
+  display: flex;
+  height: 60px;
+  line-height: 60px;
   flex-grow: 1;
+  font-size: 1.5rem;
+  font-weight: 900;
 }
 
 .logo {
-  vertical-align: middle;
+  height: auto;
+  max-width: 32px;
 }
 
 .logo-text {
-  line-height: 32px;
+  line-height: 60px;
+  height: 60px;
+  padding-left: 0.5rem;
 }

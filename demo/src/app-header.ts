@@ -9,26 +9,22 @@ export class AppHeader extends LitElement {
   render() {
     return html`
       <header class="app-header">
-        <div class="logo-container">
-          <a href="/">
-            <image
-              class="logo"
-              alt="Crontext"
-              src="/images/logo.svg"
-              width="32"
-              height="32"
-            />
-            <span class="logo-text">Crontext</span>
+        <div class="header-content">
+          <div class="logo-container">
+            <a href="/">
+              <image class="logo" alt="Crontext" src="/images/logo.svg" />
+              <span class="logo-text">Crontext</span>
+            </a>
+          </div>
+          <a href="https://github.com/rautio/crontext">
+            <div class="">
+              <span>Github</span>
+              <span class="">
+                <img src=${github} class="github-logo" alt="Github logo" />
+              </span>
+            </div>
           </a>
         </div>
-        <a href="https://github.com/rautio/crontext">
-          <div class="">
-            <span>Github</span>
-            <span class="">
-              <img src=${github} class="github-logo" alt="Github logo" />
-            </span>
-          </div>
-        </a>
       </header>
     `;
   }
