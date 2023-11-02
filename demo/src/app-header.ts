@@ -17,12 +17,8 @@ export class AppHeader extends LitElement {
             </a>
           </div>
           <a href="https://github.com/rautio/crontext">
-            <div class="">
-              <span>Github</span>
-              <span class="">
-                <img src=${github} class="github-logo" alt="Github logo" />
-              </span>
-            </div>
+            <span>Github</span>
+            <img src=${github} class="github-logo" alt="Github logo" />
           </a>
         </div>
       </header>

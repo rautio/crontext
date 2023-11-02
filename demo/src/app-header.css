@@ -11,7 +11,7 @@
   display: flex;
   margin: auto;
   min-width: 200px;
-  max-width: 72rem;
+  max-width: 60rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -38,6 +38,7 @@
   display: flex;
   color: white;
   text-decoration: none;
+  font-weight: bold;
   &:hover {
     color: #0ea5e9;
   }
@@ -49,7 +50,7 @@
   line-height: 60px;
   flex-grow: 1;
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: bolder;
 }
 
 .logo {
@@ -61,4 +62,11 @@
   line-height: 60px;
   height: 60px;
   padding-left: 0.5rem;
+}
+
+.github-logo {
+  height: 15px;
+  width: 15px;
+  padding-left: 0.5rem;
+  margin: auto;
 }
