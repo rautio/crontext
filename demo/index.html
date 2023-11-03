@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" sizes="any" />
     <link rel="stylesheet" href="./src/reset.css" />
+    <link rel="stylesheet" href="./src/global.css" />
     <link
       href=" http://fonts.googleapis.com/css?family=Lato"
       rel="stylesheet"
@@ -13,15 +14,15 @@
     />
     <title>Crontext</title>
   </head>
-  <style>
-    body {
-      background-color: #0a0a0a;
-      font-family: 'Lato';
-      font-style: 'normal';
-    }
-  </style>
   <body>
     <app-header></app-header>
+    <main class="center-container">
+      <section class="title-text">
+        <h1>Generate a cron schedule from natural text.</h1>
+      </section>
+      <app-editor></app-editor>
+    </main>
     <script type="module" src="/src/app-header.ts"></script>
+    <script type="module" src="/src/app-editor.ts"></script>
   </body>
 </html>
