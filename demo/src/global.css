@@ -14,3 +14,15 @@ body {
 .center-container {
   text-align: center;
 }
+
+.what-is {
+  border-top: 1px solid #262626;
+  display: inline-block;
+  padding-top: 1rem;
+}
+
+.what-is-title {
+  margin-bottom: 1rem;
+  color: #d4d4d4;
+  font-size: 1.25rem;
+}
