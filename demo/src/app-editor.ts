@@ -7,6 +7,8 @@ export class App extends LitElement {
   static styles = unsafeCSS(styles);
 
   render() {
-    return html``;
+    return html` <div class="container">
+      <sl-input label="Type a schedule." value="Every minute"></sl-input>
+    </div>`;
   }
 }

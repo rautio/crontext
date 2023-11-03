@@ -16,6 +16,7 @@
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@shoelace-style/shoelace": "^2.11.2",
     "@vercel/analytics": "^1.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -24,6 +25,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "rollup-plugin-copy": "^3.5.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },
