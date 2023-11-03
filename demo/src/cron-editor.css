@@ -1,10 +1,52 @@
 .container {
   display: inline-block;
+  width: 60%;
+  max-width: 36rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .container {
+    width: 80%;
+  }
+  .user-input::part(base) {
+    min-width: 480px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 60%;
+  }
+  .user-input::part(base) {
+    min-width: 480px;
+  }
+}
+
+.user-input::part(input) {
+  color: #fff;
+  padding: 2rem;
+  font-size: 1.5rem;
+}
+
+.user-input::part(base) {
+  border-color: #0ea5e9;
+  height: 4rem;
+  line-height: 4rem;
+  width: 100%;
+}
+.user-input::part(form-control-label) {
+  color: #a3a3a3;
+  float: left;
+  font-size: 0.9rem;
 }
 
 .copy-container {
   margin-top: 2rem;
-  display: flex;
+  display: inline-flex;
 }
 
 .cron-input::part(input) {

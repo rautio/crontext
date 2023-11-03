@@ -23,7 +23,11 @@ export class App extends LitElement {
     const date = nextDate(cron, new Date());
 
     return html` <div class="container">
-      <sl-input label="Type a schedule." value="Every minute"></sl-input>
+      <sl-input
+        class="user-input"
+        label="Type a schedule."
+        value="Every minute"
+      ></sl-input>
       <div class="copy-container">
         <sl-input
           class="cron-input"
