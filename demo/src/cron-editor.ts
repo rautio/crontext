@@ -14,8 +14,12 @@ export class App extends LitElement {
 
   @query('#copy-button') copyBtnSelector: HTMLSelectElement;
 
-  private _handleCopyClick() {
+  private handleCopyClick() {
     this.copyBtnSelector.shadowRoot.querySelector('button').click();
+  }
+
+  private handleUserInput(e) {
+    this.text = e.target.value;
   }
 
   render() {
@@ -27,6 +31,7 @@ export class App extends LitElement {
         class="user-input"
         label="Type a schedule."
         value="Every minute"
+        @sl-input="${this.handleUserInput}"
       ></sl-input>
       <div class="copy-container">
         <sl-input
@@ -35,7 +40,7 @@ export class App extends LitElement {
           readonly
           value=${cron}
           style="display:inline-block;"
-          @click="${this._handleCopyClick}"
+          @click="${this.handleCopyClick}"
         ></sl-input>
         <sl-copy-button
           id="copy-button"

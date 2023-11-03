@@ -50,14 +50,14 @@
 }
 
 .cron-input::part(input) {
-  font-size: 3rem;
-  letter-spacing: 0.75rem;
+  font-family: monospace;
+  font-size: 1.5rem;
+  letter-spacing: 0.5rem;
   color: #fff;
   cursor: pointer;
   text-align: center;
   background-color: #0a0a0a;
   width: 300px;
-  padding-top: 1rem;
 }
 
 .copy-button::part(button) {
