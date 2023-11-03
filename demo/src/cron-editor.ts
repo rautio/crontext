@@ -1,8 +1,8 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import styles from './app-editor.css?inline';
+import styles from './cron-editor.css?inline';
 
-@customElement('app-editor')
+@customElement('cron-editor')
 export class App extends LitElement {
   static styles = unsafeCSS(styles);
 

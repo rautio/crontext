@@ -4,7 +4,7 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 
 // App components
-import './app-editor';
+import './cron-editor';
 import './icons/what-is-cron';
 import './app-header';
 
