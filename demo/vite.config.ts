@@ -6,9 +6,8 @@ const paths = {
   production: `dist/assets/shoelace`,
   development: `shoelace`,
 };
-const vitePath = `${paths[mode]}`;
-
 const mode = process.env.NODE_ENV || 'production';
+const vitePath = `${paths[mode]}`;
 
 export default defineConfig({
   build: {
