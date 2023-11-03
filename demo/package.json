@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev-old": "next dev",
     "dev": "vite",
+    "preview": "vite preview",
+    "build": "vite build",
     "uplink": "cd .. && yarn build && cd ./lib && yarn link && cd ../demo && yarn link crontext",
-    "build": "next build",
-    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
