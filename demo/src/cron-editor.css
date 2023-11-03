@@ -1,3 +1,49 @@
 .container {
   display: inline-block;
 }
+
+.copy-container {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.cron-input::part(input) {
+  font-size: 3rem;
+  letter-spacing: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  background-color: #0a0a0a;
+  width: 300px;
+  padding-top: 1rem;
+}
+
+.copy-button::part(button) {
+  background: #202020;
+  width: 4rem;
+  text-align: center;
+  height: 100%;
+}
+
+.copy-button::part(copy-icon) {
+  margin: auto;
+}
+
+.copy-button::part(success-icon) {
+  margin: auto;
+}
+
+.copy-button::part(error-icon) {
+  margin: auto;
+}
+
+.next-date {
+  margin-top: 1rem;
+  color: #a3a3a3;
+  font-size: 0.9rem;
+}
+
+.date {
+  color: #fff;
+  font-size: bold;
+}
