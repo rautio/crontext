@@ -46,12 +46,16 @@
     <title>Crontext</title>
   </head>
   <body>
-    <app-header></app-header>
+    <div style="height: 60px; width: 100%">
+      <app-header></app-header>
+    </div>
     <main class="center-container">
       <section class="title-text">
         <h1>Generate a cron schedule from natural text.</h1>
       </section>
-      <cron-editor></cron-editor>
+      <div style="min-height: 205px">
+        <cron-editor></cron-editor>
+      </div>
       <p class="issues">
         For issues and feedback checkout the
         <a href="https://github.com/rautio/crontext/issues" class="issues-link">
