@@ -6,8 +6,7 @@
     "dev": "vite",
     "preview": "vite preview",
     "build": "vite build",
-    "uplink": "cd .. && yarn build && cd ./lib && yarn link && cd ../demo && yarn link crontext",
-    "lint": "next lint"
+    "uplink": "cd .. && yarn build && cd ./lib && yarn link && cd ../demo && yarn link crontext"
   },
   "dependencies": {
     "@lit/react": "^1.0.0",

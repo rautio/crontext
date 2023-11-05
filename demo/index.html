@@ -29,10 +29,18 @@
     <link rel="stylesheet" href="./src/reset.css" />
     <link rel="stylesheet" href="./src/global.css" />
     <link
-      href=" https://fonts.googleapis.com/css?family=Lato"
-      rel="stylesheet"
-      type="text/css"
+      rel="preload"
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+        rel="stylesheet"
+        type="text/css"
+      />
+    </noscript>
     <title>Crontext</title>
   </head>
   <body>
