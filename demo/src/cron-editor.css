@@ -38,15 +38,17 @@
   line-height: 4rem;
   width: 100%;
 }
+
 .user-input::part(form-control-label) {
   color: #a3a3a3;
   float: left;
   font-size: 0.9rem;
 }
 
-.copy-container {
-  margin-top: 2rem;
+.cron-container {
+  margin-top: 1rem;
   display: inline-flex;
+  align-items: end;
 }
 
 .cron-input::part(input) {
@@ -60,11 +62,16 @@
   width: 300px;
 }
 
+.cron-input::part(form-control-label) {
+  color: #a3a3a3;
+  float: left;
+  font-size: 0.9rem;
+}
+
 .copy-button::part(button) {
   background: #202020;
   width: 4rem;
-  text-align: center;
-  height: 100%;
+  height: 40px;
 }
 
 .copy-button::part(copy-icon) {

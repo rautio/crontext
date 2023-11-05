@@ -29,14 +29,15 @@ export class App extends LitElement {
     return html` <div class="container">
       <sl-input
         class="user-input"
-        label="Type a schedule."
+        label="Type a schedule"
         value="Every minute"
         @sl-input="${this.handleUserInput}"
       ></sl-input>
-      <div class="copy-container">
+      <div class="cron-container">
         <sl-input
           class="cron-input"
           id="cron-input"
+          label="Cron schedule"
           readonly
           value=${cron}
           style="display:inline-block;"
