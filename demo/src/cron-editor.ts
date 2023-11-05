@@ -46,10 +46,12 @@ export class App extends LitElement {
         <sl-copy-button
           id="copy-button"
           label="Copy"
+          title="Copy"
           class="copy-button"
           from="cron-input.value"
           error-label="Whoops, your browser doesn't support this!"
-        ></sl-copy-button>
+          >Copy</sl-copy-button
+        >
       </div>
       <div class="next-date">
         Next Occurrence:

@@ -12,7 +12,7 @@ export class AppHeader extends LitElement {
         <div class="header-content">
           <div class="logo-container">
             <a href="/">
-              <image class="logo" alt="Crontext" src="/images/logo.svg" />
+              <image class="logo" alt="Crontext logo." src="/images/logo.svg" />
               <span class="logo-text">Crontext</span>
             </a>
           </div>
