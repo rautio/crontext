@@ -33,7 +33,7 @@ export class App extends LitElement {
     this.updateUrl(e.target.value);
   }
 
-  private updateUrl = debounce(this._updateUrl);
+  private updateUrl = debounce(this._updateUrl, 500);
 
   private _updateUrl(input: string) {
     const url = new URL(window.location.href);
