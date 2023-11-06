@@ -6,7 +6,9 @@
 
 @media only screen and (max-width: 600px) {
   .container {
-    width: 100%;
+    width: inherit;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 @media only screen and (min-width: 600px) {
