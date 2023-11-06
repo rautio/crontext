@@ -1,16 +1,26 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, state, query } from 'lit/decorators.js';
 import { parseText, nextDate, version, crontext } from 'crontext';
+import debounce from './utils/debounce';
 import styles from './cron-editor.css?inline';
 
 console.log({ crontext: version });
+
+const getUrlInput = (): string => {
+  const url = new URL(window.location.href);
+  const q = url.searchParams.get('q');
+  if (q) {
+    return q;
+  }
+  return '';
+};
 
 @customElement('cron-editor')
 export class App extends LitElement {
   static styles = unsafeCSS(styles);
 
   @state()
-  private text = 'Every minute';
+  private text = getUrlInput() || 'Every minute';
 
   @query('#copy-button') copyBtnSelector: HTMLSelectElement;
 
@@ -20,6 +30,19 @@ export class App extends LitElement {
 
   private handleUserInput(e) {
     this.text = e.target.value;
+    this.updateUrl(e.target.value);
+  }
+
+  private updateUrl = debounce(this._updateUrl);
+
+  private _updateUrl(input: string) {
+    const url = new URL(window.location.href);
+    if (input) {
+      url.searchParams.set('q', input);
+    } else {
+      url.searchParams.delete('q');
+    }
+    history.replaceState({}, '', url.href);
   }
 
   render() {
@@ -30,7 +53,7 @@ export class App extends LitElement {
       <sl-input
         class="user-input"
         label="Type a schedule"
-        value="Every minute"
+        value="${this.text}"
         @sl-input="${this.handleUserInput}"
       ></sl-input>
       <div class="cron-container">
