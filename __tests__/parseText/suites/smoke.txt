@@ -99,3 +99,12 @@ in 2 weeks
 
 in 5 months
 0 9 4 7 *
+
+Thursdays
+0 9 * * 4
+
+mon
+0 9 * * 1
+
+weekdays
+0 9 * * 1-5
