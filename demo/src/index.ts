@@ -11,3 +11,9 @@ import './app-header';
 
 // Set the base path to the folder you copied Shoelace's assets to
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+
+// Vercel speed insights API
+import reportWebVitals from './reportWebVitals';
+import { sendToVercelAnalytics } from './vitals';
+
+reportWebVitals(sendToVercelAnalytics);
